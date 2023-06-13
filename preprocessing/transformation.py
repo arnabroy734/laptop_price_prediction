@@ -1,5 +1,6 @@
 from sklearn.base import BaseEstimator, TransformerMixin
 import re
+import pandas as pd
 
 class Transformation(BaseEstimator, TransformerMixin):
     """
@@ -8,6 +9,7 @@ class Transformation(BaseEstimator, TransformerMixin):
                  Extracts RAM capacity from RAM feature
                  Fill nan values in Graphic Memory with 0. Also extracts numerical values from Graphic Memory
                  Fill nan values in Graphic Card with NO_GRAPHIC_CARD. Maps graphic cards as DEDICATED or INTEGRATED
+                 Extract screen size in CM.
     """
     def fit(self, X, y=None):
         return self
@@ -39,6 +41,11 @@ class Transformation(BaseEstimator, TransformerMixin):
   
         data['Graphic_Processor'] = data['Graphic_Processor'].map(lambda x: category_map[x])
 
+        data['Screen_Size'] = data['Screen_Size'].map(self.extract_cm_value)
+
+        data.loc[data.Screen_Resolution == '1080p pixel', 'Screen_Resolution']= '1080 x 1920'
+        data['Screen_Resolution'] = data['Screen_Resolution'].map(self.find_total_pixel)
+
         return data
 
 
@@ -60,3 +67,29 @@ class Transformation(BaseEstimator, TransformerMixin):
             return max(result)
         except:
             return None
+
+    def extract_cm_value(self, string):
+        """
+        Description: Extract the CM value of Screen Size
+        Paramater: string = the feature string
+        Return: cm value as float no.
+        Example: extract_cm_value('90.32 cm (35.56 cm)') returns 35.56
+        """
+        pattern = r'[0-9]+\.*[0-9]*(?=\s*cm)'
+        res = re.findall(pattern=pattern, string=string)
+        res = pd.Series(res)
+        res = res.map(lambda x: float(x))
+        return min(res)
+
+    
+    def find_total_pixel(self, string):
+        """
+        Description: Extracts total pixels from a screen resolution text
+        Parameter: string = the feature string
+        Return: Total pixel value in integer format
+        Example: find_total_pixel('1920 x 1200 Pixel') returns 2304000
+        """
+        pattern = r'([0-9]{3,4})[^0-9]+([0-9]{3,4})'
+        res = re.findall(pattern, string)
+        res = res[0]
+        return int(res[0])*int(res[1])

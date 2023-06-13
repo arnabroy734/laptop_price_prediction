@@ -7,4 +7,4 @@ from preprocessing import pipelines
 # crawler.scrape_product_details()
 
 data = pipelines.test_pipeline()
-print(data)
+data.to_csv('train_1.csv')
