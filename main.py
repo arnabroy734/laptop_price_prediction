@@ -1,10 +1,20 @@
 from webcrawler import crawler, items
 import pandas as pd
 import re
-from preprocessing import pipelines
+import pipelines
+import pickle
 
 # crawler.scrape_product_links()
 # crawler.scrape_product_details()
 
-data = pipelines.test_pipeline()
-data.to_csv('train_1.csv')
+# data = pipelines.test_pipeline()
+# data.to_csv('train_2.csv')
+# print(data)
+with open('encoder.pkl', 'rb') as f:
+    encoder = pickle.load(f)
+    print(encoder['SSD_Encoding'].encoding)
+    f.close()
+
+
+# data = pd.read_csv('./data/train.csv', encoding='unicode_escape')
+# print(data['SSD_Capacity'].unique())

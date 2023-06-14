@@ -10,6 +10,7 @@ class Transformation(BaseEstimator, TransformerMixin):
                  Fill nan values in Graphic Memory with 0. Also extracts numerical values from Graphic Memory
                  Fill nan values in Graphic Card with NO_GRAPHIC_CARD. Maps graphic cards as DEDICATED or INTEGRATED
                  Extract screen size in CM.
+                 Fill null values in SSD_CAPACITY with NO_SSD and replace 16 GB with 512 GB
     """
     def fit(self, X, y=None):
         return self
@@ -45,6 +46,9 @@ class Transformation(BaseEstimator, TransformerMixin):
 
         data.loc[data.Screen_Resolution == '1080p pixel', 'Screen_Resolution']= '1080 x 1920'
         data['Screen_Resolution'] = data['Screen_Resolution'].map(self.find_total_pixel)
+
+        data['SSD_Capacity'] = data['SSD_Capacity'].fillna('NO_SSD')
+        data.loc[data.SSD_Capacity == '16 GB', 'SSD_Capacity'] = '512 GB'
 
         return data
 
@@ -93,3 +97,4 @@ class Transformation(BaseEstimator, TransformerMixin):
         res = re.findall(pattern, string)
         res = res[0]
         return int(res[0])*int(res[1])
+
