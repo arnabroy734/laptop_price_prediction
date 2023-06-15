@@ -2,7 +2,7 @@ from sklearn.pipeline import Pipeline, make_pipeline
 from preprocessing.data_cleaning import *
 from preprocessing.transformation import *
 import pandas as pd
-from webcrawler.urls import TRAIN_DATA_FILE
+from urls_and_paths.path import RAW_DATA_FILE
 from preprocessing.encoding import *
 from preprocessing.imputation import *
 import pickle
@@ -34,7 +34,7 @@ class ImputerPipeline:
 
 
 def test_pipeline():
-    data = pd.read_csv(TRAIN_DATA_FILE, encoding='unicode_escape')
+    data = pd.read_csv(RAW_DATA_FILE, encoding='unicode_escape')
     data = DataCleaningPipeline().pipeline.fit_transform(data)
     
     encoder = EncodingPipeline().pipeline

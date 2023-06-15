@@ -1,9 +1,11 @@
 import scrapy
-from .urls import *
+from urls_and_paths.urls import BASE_URL, START_URL, PRODUCT_BASE_URL
 from .items import ProductLink, ProductDetails
+from logs.logger import App_Logger
+from urls_and_paths.path import CRAWL_LOGS
 
 class MainSpider(scrapy.Spider):
-    name = MAIN_SPIDER
+    name = "main_spider"
     start_urls = [START_URL]
 
     def parse(self, response):
@@ -20,8 +22,7 @@ class MainSpider(scrapy.Spider):
                 product_link['link'] = BASE_URL + link
                 yield product_link
 
-        except:
-            # TODO: Inside spider MainSpider write logging
+        except Exception as e:
             pass
         
         try:
@@ -31,12 +32,11 @@ class MainSpider(scrapy.Spider):
                 yield response.follow(nextpage, self.parse)
 
         except:
-            # TODO: Inside MainSpider wite loggin
             pass
 
 
 class ProductDetailsSpider(scrapy.Spider):
-    name = PRODUCT_SPIDER
+    name = "product_spider"
 
     def __init__(self, links, *args, **kwargs):
         """

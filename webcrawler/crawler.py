@@ -1,11 +1,10 @@
-import scrapy
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 from .spiders import MainSpider, ProductDetailsSpider
 from .settings import *
 import pandas as pd
-from webcrawler.urls import LINK_FILE
-import time
+from urls_and_paths.path import LINK_FILE, CRAWL_LOGS
+from logs.logger import App_Logger
 
 def scrape_product_links():
     """
@@ -16,9 +15,10 @@ def scrape_product_links():
         process = CrawlerProcess(settings=SETTING_MAIN_SPIDER)
         process.crawl(MainSpider)
         process.start()  # the script will block here until all crawling jobs are finished
+        App_Logger().log(CRAWL_LOGS, "crawler.py:  Product links scraped successfully")
     
-    except:
-        # TODO: Write logging in crawling product links
+    except Exception as e:
+        App_Logger().log(CRAWL_LOGS, f"crawler.py:  Error in product link scraping - {str(e)}")
         pass
 
 def scrape_product_details():
@@ -33,8 +33,9 @@ def scrape_product_details():
         process = CrawlerProcess(settings=SETTING_PRODUCT_SPIDER)
         process.crawl(ProductDetailsSpider, links=list(urls))
         process.start()
+        App_Logger().log(CRAWL_LOGS, "crawler.py:  Product details scraped successfully")
     except Exception as e:
-        # TODO: Write logging in crawling product links
+        App_Logger().log(CRAWL_LOGS, f"crawler.py:  Error in product details scraping - {str(e)}")
         pass
 
 

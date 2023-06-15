@@ -1,4 +1,6 @@
-from .urls import LINK_FILE, PRODUCT_BASE_URL, TRAIN_DATA_FILE
+from urls_and_paths.urls import PRODUCT_BASE_URL
+from  urls_and_paths.path import LINK_FILE, RAW_DATA_FILE, CRAWL_LOGS
+from logs.logger import App_Logger
 import csv
 import re
 
@@ -20,7 +22,7 @@ class BufferProductLinks:
                 writer.writerow(['PRODUCT_ID', 'PRODUCT_LINK'])
                 f.close()
         except:
-            # TODO: In pipeline BufferProductLinks file IO write logging
+            App_Logger().log(CRAWL_LOGS, f'Error: cannot open file {LINK_FILE}')
             pass
 
     def process_item(self, item, spider):
@@ -40,7 +42,7 @@ class BufferProductLinks:
                 f.close()
             return item
         except:
-            # TODO: In pipeline BufferProductLinks process_item file IO write logging
+            App_Logger().log(CRAWL_LOGS, f'Error: cannot write to file {LINK_FILE}')
             pass
 
     def extract_product_id(self, url):
@@ -92,12 +94,12 @@ class SaveProductDetails:
                             'Touchscreen', 'Screen_Size', 'Screen_Resolution',
                             'Refresh_Rate', 'price']
         try:
-            with open(TRAIN_DATA_FILE, 'w', newline='') as f:
+            with open(RAW_DATA_FILE, 'w', newline='') as f:
                 writer = csv.DictWriter(f,self.fieldnames)
                 writer.writeheader()
                 f.close()
         except:
-            # TODO: In pipeline BufferProductLinks file IO write logging
+            App_Logger().log(CRAWL_LOGS, f'Error: cannot create file {RAW_DATA_FILE}')
             pass
 
     def process_item(self, item, spider):
@@ -106,11 +108,12 @@ class SaveProductDetails:
                      Item is then written to train.csv file
         """
         try:
-            with open(TRAIN_DATA_FILE, 'a', newline='') as f:
+            with open(RAW_DATA_FILE, 'a', newline='') as f:
                 writer = csv.DictWriter(f, self.fieldnames)
                 writer.writerow(dict(item))
+                print(dict(item))
                 f.close()
 
         except Exception as e:
-            # TODO: In pipeline BufferProductLinks file IO write logging
+            App_Logger().log(CRAWL_LOGS, f'Error: cannot write to file {RAW_DATA_FILE}')
             pass

@@ -1,0 +1,10 @@
+2023-06-15/07:26:40		crawler.py:  Product links scraped successfully
+2023-06-15/07:26:40		crawler.py:  Error in product details scraping - 
+2023-06-15/07:29:05		crawler.py:  Product links scraped successfully
+2023-06-15/07:29:05		crawler.py:  Error in product details scraping - 
+2023-06-15/07:31:36		crawler.py:  Product links scraped successfully
+2023-06-15/07:31:36		crawler.py:  Error in product details scraping - 
+2023-06-15/07:34:49		crawler.py:  Product links scraped successfully
+2023-06-15/07:34:49		crawler.py:  Error in product details scraping - 
+2023-06-15/07:37:59		crawler.py:  Product links scraped successfully
+2023-06-15/07:37:59		crawler.py:  Error in product details scraping - 
