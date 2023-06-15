@@ -1,6 +1,12 @@
 from sklearn.base import BaseEstimator, TransformerMixin
 
 class ProcessorEncoding(BaseEstimator, TransformerMixin):
+  """
+  Description: 
+  1. Here the processor name will be encoded as per target.
+  2. The processor having low average price will be assigned a lower rank
+  3. The processor having high average price will be assigned a higher rank
+  """
   def fit(self, X, y=None):
     ascending_index = list(X.groupby('Processor_Name')['price'].median().sort_values().index)
     self.encoding = {}
@@ -15,6 +21,12 @@ class ProcessorEncoding(BaseEstimator, TransformerMixin):
 
 
 class SSD_Encoding (BaseEstimator, TransformerMixin):
+  """
+  Description: 
+  1. Here the SSD capacity will be encoded as per target.
+  2. The SSD having low average price will be assigned a lower rank
+  3. The SSD having high average price will be assigned a higher rank
+  """
   def fit(self, X, y=None):
 
     ascending_index = list(X.groupby('SSD_Capacity')['price'].median().sort_values().index)

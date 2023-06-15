@@ -1,0 +1,10 @@
+2023-06-15/10:59:08		preprocessing: Error in initialising Preprocessor object - raw data cannot be read
+2023-06-15/10:59:34		preprocessing: raw data read successfully and Preprocessor object initialised
+2023-06-15/11:12:59		preprocessing: raw data read successfully and Preprocessor object initialised
+2023-06-15/11:14:09		preprocessing: raw data read successfully and Preprocessor object initialised
+2023-06-15/11:17:37		preprocessing: raw data read successfully and Preprocessor object initialised
+2023-06-15/11:17:38		preprocessing: Error in preprocessing - list index out of range
+2023-06-15/11:25:24		preprocessing: raw data read successfully and Preprocessor object initialised
+2023-06-15/11:25:24		preprocessing: Error in preprocessing - Inside Transformation object:  inside transform function: In Transformation.py: inside find_total_pixel: list index out of range
+2023-06-15/11:32:49		preprocessing: raw data read successfully and Preprocessor object initialised
+2023-06-15/11:32:49		preprocessing: data successfully preprocessed and saved

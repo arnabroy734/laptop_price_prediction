@@ -6,3 +6,15 @@ RAW_DATA_FILE = "./data/raw.csv"
 
 # File to save crawler logs
 CRAWL_LOGS = "./logs/crawl_logs.txt"
+
+# File to save preprocessing logs
+PRE_LOGS = "./logs/preprocessing_logs.txt"
+
+# File to save data encoder in .pkl format
+ENCODER_FILE = "./models/encoder.pkl"
+
+# File to save preprocessed data
+PREPROCESSED_DATA_FILE = './data/preprocessed.csv'
+
+# FIle to save training logs
+

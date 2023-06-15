@@ -111,7 +111,6 @@ class SaveProductDetails:
             with open(RAW_DATA_FILE, 'a', newline='') as f:
                 writer = csv.DictWriter(f, self.fieldnames)
                 writer.writerow(dict(item))
-                print(dict(item))
                 f.close()
 
         except Exception as e:

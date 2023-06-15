@@ -6,6 +6,9 @@ import pandas as pd
 
 
 class CloclSpeedNanImputer (BaseEstimator, TransformerMixin):
+  """
+  Description: Here we are using KNN imputer to impute nan values in Clock Speed feature
+  """
   def fit(self, X, y=None):
     return self
 
