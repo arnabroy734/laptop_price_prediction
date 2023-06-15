@@ -6,6 +6,7 @@ from logs.logger import App_Logger
 import time
 from preprocessing.preprocessor_main import Preprocessor
 from urls_and_paths.path import ENCODER_FILE
+from training.training import TrainBestModel
 
 
 # crawler.scrape_product_links()
@@ -15,10 +16,8 @@ from urls_and_paths.path import ENCODER_FILE
 # data = pipelines.test_pipeline()
 # data.to_csv('train_2.csv')
 # print(data)
-with open(ENCODER_FILE, 'rb') as f:
-    encoder = pickle.load(f)
-    print(encoder['SSD_Encoding'].encoding)
-    f.close()
+# Preprocessor().preprocess()
 
+TrainBestModel().find_best_model()
 
 

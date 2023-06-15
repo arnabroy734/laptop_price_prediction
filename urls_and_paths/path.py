@@ -16,5 +16,10 @@ ENCODER_FILE = "./models/encoder.pkl"
 # File to save preprocessed data
 PREPROCESSED_DATA_FILE = './data/preprocessed.csv'
 
-# FIle to save training logs
+# File to save product ids and links after dropping columns
+PROD_ID_AND_LINK = "./data/product_ids_and_links_after_duplicates.csv"
+
+# FIle to save model parameters and CV and test scores
+TRAIN_LOGS = "./logs/train_logs.txt"
+
 
