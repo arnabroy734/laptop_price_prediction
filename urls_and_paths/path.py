@@ -22,4 +22,10 @@ PROD_ID_AND_LINK = "./data/product_ids_and_links_after_duplicates.csv"
 # FIle to save model parameters and CV and test scores
 TRAIN_LOGS = "./logs/train_logs.txt"
 
+# File to save model files
+MODELS = {
+    'linear' : "./models/linear.pkl",
+    'decision' : "./models/decision.pkl"
+}
+
 

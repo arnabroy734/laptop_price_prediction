@@ -1,3 +1,11 @@
 2023-06-15/19:38:54		Linear Ridge: Best Model: Pipeline(steps=[('scaler', MinMaxScaler()), ('model', Ridge(alpha=0.5))])
 2023-06-15/19:38:54		Linear Ridge: CV Score: 0.8322663815437185
 2023-06-15/19:38:54		Linear Ridge: Test Score: 0.7956652473781507
+2023-06-16/06:53:35		Linear Ridge: Best Model: Pipeline(steps=[('scaler', MinMaxScaler()), ('model', Ridge(alpha=0.5))])
+2023-06-16/06:53:35		Linear Ridge: CV Score: 0.8322663815437185
+2023-06-16/06:53:35		Linear Ridge: Test Score: 0.7956652473781507
+2023-06-16/06:53:35		Linear Ridge: Model Saved: ./models/linear.pkl
+2023-06-16/07:32:29		Decision Tree: Best Model: DecisionTreeRegressor(max_depth=490, min_samples_split=10)
+2023-06-16/07:32:29		Decision Tree: CV Score: 0.8319563619902028
+2023-06-16/07:32:29		Decision Tree: Test Score: 0.8252603463137052
+2023-06-16/07:32:29		Decision Tree: Model Saved: ./models/decision.pkl
