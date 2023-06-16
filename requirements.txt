@@ -71,5 +71,6 @@ tzdata==2023.3
 urllib3==2.0.3
 w3lib==2.1.1
 wcwidth @ file:///home/conda/feedstock_root/build_artifacts/wcwidth_1673864653149/work
+xgboost==1.7.5
 zipp @ file:///home/conda/feedstock_root/build_artifacts/zipp_1677313463193/work
 zope.interface==6.0

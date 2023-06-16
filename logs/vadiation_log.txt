@@ -1,0 +1,50 @@
+2023-06-16/20:55:33		Prediction Validation: object initiated successfully
+2023-06-16/20:56:45		Prediction Validation: object initiated successfully
+2023-06-16/20:56:45		Prediction Validation: columns names and order validated successfully
+2023-06-16/20:56:45		Prediction Validation: data type validation successful
+2023-06-16/20:56:45		Prediction Validation: category and range validation successful
+2023-06-16/20:57:18		Prediction Validation: object initiated successfully
+2023-06-16/20:57:18		Prediction Validation: columns names and order validated successfully
+2023-06-16/20:57:18		Prediction Validation: data type validation successful
+2023-06-16/20:57:18		Prediction Validation: the category in columns SSD_Capacity is not accepted
+2023-06-16/20:57:41		Prediction Validation: object initiated successfully
+2023-06-16/20:57:41		Prediction Validation: columns names and order validated successfully
+2023-06-16/20:57:41		Prediction Validation: data type validation successful
+2023-06-16/20:57:41		Prediction Validation: category and range validation successful
+2023-06-16/20:57:51		Prediction Validation: object initiated successfully
+2023-06-16/20:57:51		Prediction Validation: columns names and order validated successfully
+2023-06-16/20:57:51		Prediction Validation: data type validation successful
+2023-06-16/20:57:51		Prediction Validation: the category in columns SSD_Capacity is not accepted
+2023-06-16/20:58:13		Prediction Validation: object initiated successfully
+2023-06-16/20:58:13		Prediction Validation: input column SSD_Capacity not matching with Clock_Speed
+2023-06-16/20:58:42		Prediction Validation: object initiated successfully
+2023-06-16/20:58:42		Prediction Validation: input column SSD_Capacity not matching with Clock_Speed
+2023-06-16/20:59:18		Prediction Validation: object initiated successfully
+2023-06-16/20:59:18		Prediction Validation: input column ClockSpeed not matching with Clock_Speed
+2023-06-16/20:59:42		Prediction Validation: object initiated successfully
+2023-06-16/20:59:42		Prediction Validation: columns names and order validated successfully
+2023-06-16/20:59:42		Prediction Validation: data type not matching for column RAM
+2023-06-16/21:00:48		Prediction Validation: object initiated successfully
+2023-06-16/21:00:48		Prediction Validation: columns names and order validated successfully
+2023-06-16/21:00:48		Prediction Validation: data type validation successful
+2023-06-16/21:00:48		Prediction Validation: the category in columns Graphic_Processor is not accepted
+2023-06-16/21:09:51		Prediction Validation: object initiated successfully
+2023-06-16/21:09:51		Prediction Validation: columns names and order validated successfully
+2023-06-16/21:09:51		Prediction Validation: data type validation successful
+2023-06-16/21:09:51		Prediction Validation: category and range validation successful
+2023-06-16/21:10:03		Prediction Validation: object initiated successfully
+2023-06-16/21:10:03		Prediction Validation: columns names and order validated successfully
+2023-06-16/21:10:03		Prediction Validation: data type validation successful
+2023-06-16/21:10:19		Prediction Validation: object initiated successfully
+2023-06-16/21:10:19		Prediction Validation: columns names and order validated successfully
+2023-06-16/21:10:19		Prediction Validation: data type validation successful
+2023-06-16/21:10:48		Prediction Validation: object initiated successfully
+2023-06-16/21:10:48		Prediction Validation: columns names and order validated successfully
+2023-06-16/21:10:48		Prediction Validation: data type validation successful
+2023-06-16/21:11:14		Prediction Validation: object initiated successfully
+2023-06-16/21:11:14		Prediction Validation: columns names and order validated successfully
+2023-06-16/21:11:14		Prediction Validation: data type validation successful
+2023-06-16/21:11:40		Prediction Validation: object initiated successfully
+2023-06-16/21:11:40		Prediction Validation: columns names and order validated successfully
+2023-06-16/21:11:40		Prediction Validation: data type validation successful
+2023-06-16/21:11:40		Prediction Validation: category and range validation successful

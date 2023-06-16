@@ -13,6 +13,9 @@ PRE_LOGS = "./logs/preprocessing_logs.txt"
 # File to save data encoder in .pkl format
 ENCODER_FILE = "./models/encoder.pkl"
 
+# Data after being cleaned by DataCleaningPipeline()
+DATA_AFTER_CLEANING = "./data/data_after_cleaning.csv"
+
 # File to save preprocessed data
 PREPROCESSED_DATA_FILE = './data/preprocessed.csv'
 
@@ -32,5 +35,14 @@ MODELS = {
 
 # Best model based on test score
 BEST_MODEL = "./models/best_model.pkl"
+
+# Prediction pipeline logs
+PREDICTION_LOGS = "./logs/prediction_logs.txt"
+
+# Validation log
+VALIDATION_LOG = "./logs/vadiation_log.txt"
+
+# Recommender logs
+RECOMMENDATION_LOGS = "./logs/recommendation_log.txt"
 
 

@@ -1,0 +1,12 @@
+2023-06-16/19:10:08		prediction pipeline init: encoder loaded successfully
+2023-06-16/19:10:08		prediction pipeline init: Error in loading files
+2023-06-16/19:11:13		prediction pipeline init: encoder loaded successfully
+2023-06-16/19:11:13		prediction pipeline init: best model loaded successfully
+2023-06-16/19:20:18		prediction pipeline init: encoder loaded successfully
+2023-06-16/19:20:18		prediction pipeline init: best model loaded successfully
+2023-06-16/19:21:10		prediction pipeline init: encoder loaded successfully
+2023-06-16/19:21:10		prediction pipeline init: best model loaded successfully
+2023-06-16/19:24:13		prediction pipeline init: encoder loaded successfully
+2023-06-16/19:24:13		prediction pipeline init: best model loaded successfully
+2023-06-16/19:28:15		prediction pipeline init: encoder loaded successfully
+2023-06-16/19:28:15		prediction pipeline init: best model loaded successfully

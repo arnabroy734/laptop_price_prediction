@@ -1,4 +1,4 @@
-from urls_and_paths.path import RAW_DATA_FILE, PRE_LOGS, ENCODER_FILE, PREPROCESSED_DATA_FILE
+from urls_and_paths.path import RAW_DATA_FILE, PRE_LOGS, ENCODER_FILE, PREPROCESSED_DATA_FILE, DATA_AFTER_CLEANING
 from logs.logger import App_Logger
 from sklearn.pipeline import Pipeline, make_pipeline
 from preprocessing.data_cleaning import *
@@ -25,11 +25,14 @@ class Preprocessor:
             App_Logger().log(file_path=PRE_LOGS, log_message="preprocessing: raw data read successfully and Preprocessor object initialised")
         except:
             App_Logger().log(file_path=PRE_LOGS, log_message="preprocessing: Error in initialising Preprocessor object - raw data cannot be read")
+            raise Exception('Preprocessor cannot be initialised - raw data file could not be found')
 
     
     def preprocess(self):
         try:
             self.data = DataCleaningPipeline().pipeline.fit_transform(self.data)
+
+            self.data.to_csv(DATA_AFTER_CLEANING, index=False)
     
             encoder = EncodingPipeline().pipeline
             self.data = encoder.fit_transform(self.data)
