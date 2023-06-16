@@ -18,7 +18,7 @@ class LinearReg:
     params = {
         'alpha': [0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 5, 10, 50, 100, 500]
     }
-    self.grid_search = GridSearchCV(estimator=Ridge(), param_grid=params, cv=5, scoring='r2')
+    self.grid_search = GridSearchCV(estimator=Ridge(), param_grid=params, cv=5, scoring='r2', verbose=3)
     self.scaler = MinMaxScaler()
 
     
@@ -29,7 +29,7 @@ class LinearReg:
     1. Do train test split and tune hyperparameter by grid search
     2. Save CV score
     3. Save Test Score
-    
+    4. Serialise the model in .pkl format
     """
     # Split
     y = data['price']

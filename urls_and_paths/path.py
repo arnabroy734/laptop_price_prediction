@@ -25,7 +25,12 @@ TRAIN_LOGS = "./logs/train_logs.txt"
 # File to save model files
 MODELS = {
     'linear' : "./models/linear.pkl",
-    'decision' : "./models/decision.pkl"
+    'decision' : "./models/decision.pkl",
+    'randomforest' : "./models/randomforest.pkl",
+    'boosting' : "./models/xgboost.pkl"
 }
+
+# Best model based on test score
+BEST_MODEL = "./models/best_model.pkl"
 
 
