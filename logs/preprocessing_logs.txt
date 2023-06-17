@@ -14,3 +14,5 @@
 2023-06-16/20:04:43		preprocessing: Error in preprocessing - [Errno 13] Permission denied: './data/preprocessed.csv'
 2023-06-16/20:05:34		preprocessing: raw data read successfully and Preprocessor object initialised
 2023-06-16/20:05:34		preprocessing: data successfully preprocessed and saved
+2023-06-17/07:36:12		preprocessing: raw data read successfully and Preprocessor object initialised
+2023-06-17/07:36:13		preprocessing: Error in preprocessing - Inside Transformation object:  inside transform function: In Transformation.py: inside find_total_pixel: list index out of range

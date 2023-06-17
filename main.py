@@ -18,7 +18,7 @@ from recommendation.recommendation import Recommender
 # data = pipelines.test_pipeline()
 # data.to_csv('train_2.csv')
 # print(data)
-# Preprocessor().preprocess()
+Preprocessor().preprocess()
 
 # TrainBestModel().find_best_model()
 
@@ -42,16 +42,7 @@ from recommendation.recommendation import Recommender
 #     print('Prediction pipeline cannot be initiated')
 
 
-X = {'Processor_Name': [ 'Core i5'],
-        'Clock_Speed': [4.6],
-        'SSD_Capacity': [ '512 GB'],
-        'RAM': [8],
-        'Graphic_Processor': ['INTEGRATED'],
-        'Graphic_Memory' : [ 0],
-        'Touchscreen': ['No'],
-        'Screen_Size': [ 40],
-        'Screen_Resolution': [2073600]
-    }
+
 
 # X = {'Processor_Name': ['Core i7'],
 #         'Clock_Speed': [5],
@@ -64,7 +55,7 @@ X = {'Processor_Name': [ 'Core i5'],
 #         'Screen_Resolution': [4096000]
 #     }
 
-X = pd.DataFrame(X)
+# X = pd.DataFrame(X)
 
 # try:
 #     PredictionValidation().validate_input(X)
@@ -72,7 +63,7 @@ X = pd.DataFrame(X)
 # except Exception as e:
 #     print(e)
 
-res = Recommender().recommend(X)
-print(res)
+# res = Recommender().recommend(X)
+# print(res)
 
 

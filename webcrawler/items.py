@@ -4,6 +4,8 @@ class ProductLink(Item):
     link = Field()
 
 class ProductDetails(Item):
+    product_description = Field()
+    product_image = Field()
     product_id = Field()
     product_link = Field()
     Processor_Name = Field()
@@ -21,6 +23,8 @@ class ProductDetails(Item):
 
     def initialise_null(self):
         
+        self['product_description'] = None
+        self['product_image'] = None
         self['product_id'] = None
         self['product_link'] = None
         self['Processor_Name'] = None 

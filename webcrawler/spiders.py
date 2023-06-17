@@ -54,7 +54,9 @@ class ProductDetailsSpider(scrapy.Spider):
         product = ProductDetails().initialise_null() # Create a new product with all fields null
         product['product_link'] = response.request.url
         product['product_id'] = product['product_link'][len(PRODUCT_BASE_URL) : ]
-
+        
+        product['product_description'] = response.css(".B_NuCI::text").get()
+        product['product_image'] = response.css("img._396cs4._2amPTt::attr(src)").get()
         price = response.css("._30jeq3._16Jk6d::text").get()
         product["price"] = price[1:]
 

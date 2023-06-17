@@ -87,7 +87,7 @@ class SaveProductDetails:
         Description: This is called during initialisation of CrawlProcess with ProductDetailsSpider
                      A CSV file called train.csv is created with designated name to store all the products with details                    
         """
-        self.fieldnames = ['product_id', 'product_link', 
+        self.fieldnames = ['product_id', 'product_link', 'product_description', 'product_image',
                             'Processor_Name', 'Processor_Generation', 
                             'Clock_Speed', 'SSD_Capacity', 'RAM', 
                             'Graphic_Processor', 'Graphic_Memory',
