@@ -5,7 +5,7 @@ import pandas as pd
 
 
 
-class CloclSpeedNanImputer (BaseEstimator, TransformerMixin):
+class NanImputer (BaseEstimator, TransformerMixin):
   """
   Description: Here we are using KNN imputer to impute nan values in Clock Speed feature
   """

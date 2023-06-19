@@ -54,15 +54,15 @@ class Boosting:
     self.test_score = r2_score(y_test, y_pred)
 
     # Save the training logs
-    App_Logger().log(file_path=TRAIN_LOGS, log_message=f"XGBoost Regressor: Best Model: {self.best_model}")
-    App_Logger().log(file_path=TRAIN_LOGS, log_message=f"XGBoost Regressor: CV Score: {self.cv_score}")
-    App_Logger().log(file_path=TRAIN_LOGS, log_message=f"XGBoost Regressor: Test Score: {self.test_score}")
+    App_Logger().log(module="training", msg_type='success', message=f"XGBoost Regressor: Best Model: {self.best_model}")
+    App_Logger().log(module="training", msg_type='success', message=f"XGBoost Regressor: CV Score: {self.cv_score}")
+    App_Logger().log(module="training", msg_type='success', message=f"XGBoost Regressor: Test Score: {self.test_score}")
 
     # Save the model to ./models folder
     with open(MODELS['boosting'], 'wb') as f:
       pickle.dump(self.best_model, f)
       f.close()
-      App_Logger().log(file_path=TRAIN_LOGS, log_message=f"XGBoost Regressor: Model Saved: {MODELS['boosting']}")
+      App_Logger().log(module="training", msg_type='success', message=f"XGBoost Regressor: Model Saved: {MODELS['boosting']}")
 
 
 

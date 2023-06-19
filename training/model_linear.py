@@ -56,15 +56,17 @@ class LinearReg:
     self.test_score = r2_score(y_test, y_pred)
 
     # Save the training logs
-    App_Logger().log(file_path=TRAIN_LOGS, log_message=f"Linear Ridge: Best Model: {self.best_model}")
-    App_Logger().log(file_path=TRAIN_LOGS, log_message=f"Linear Ridge: CV Score: {self.cv_score}")
-    App_Logger().log(file_path=TRAIN_LOGS, log_message=f"Linear Ridge: Test Score: {self.test_score}")
+    App_Logger().log(module="training", msg_type='success', message=f"Linear Ridge: Best Model: {self.best_model}")
+    App_Logger().log(module="training", msg_type='success', message=f"Linear Ridge: CV R2 Score: {self.cv_score}")
+    App_Logger().log(module="training", msg_type='success', message=f"Linear Ridge: Test R2 Score: {self.test_score}")
+
+   
 
     # Save the model to ./models folder
     with open(MODELS['linear'], 'wb') as f:
       pickle.dump(self.best_model, f)
       f.close()
-      App_Logger().log(file_path=TRAIN_LOGS, log_message=f"Linear Ridge: Model Saved: {MODELS['linear']}")
+      App_Logger().log(module="training", msg_type='success', message=f"Linear Ridge: Model Saved: {MODELS['linear']}")
 
 
 

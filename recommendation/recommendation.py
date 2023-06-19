@@ -1,68 +1,109 @@
-from urls_and_paths.path import PREPROCESSED_DATA_FILE, PROD_ID_AND_LINK, RECOMMENDATION_LOGS, ENCODER_FILE
+from urls_and_paths.path import DATA_AFTER_CLEANING, PROD_ID_AND_LINK, RAW_DATA_FILE, RECOMMENDER
 import pandas as pd
-from sklearn.neighbors import NearestNeighbors
+import numpy as np
 from sklearn.preprocessing import MinMaxScaler
-from logs.logger import App_Logger
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.neighbors import NearestNeighbors
 import pickle
+from logs.logger import App_Logger
 
-class Recommender:
+
+class Recommendation:
+  """
+  This class will find matching product based on given input
+  In this we will use Nearest Neighbour to find 5 neaest neighbours with co-sine similarity
+  """
+
+  def __init__(self):
     """
-    This class will find matching product based on given input
-    In this we will use KNN to find 5 neaest neighbours with co-sine similarity
-    """
-    def __init__(self):
-        """
         Steps to initialise:
-        1. Initialise the dataset
-        2. Normalise the data to perform scaling
-        3. Fit the data to KNN model with co-sine similarity
-        4. Initialise the encoder from saved data
-        """
-        try:
-            # Read preprocessed data and drop the price feature
-            data = pd.read_csv(PREPROCESSED_DATA_FILE)
-            data.drop(['price'], axis=1, inplace=True)
+        1. Initialise the dataset - the dataset after cleaning will be used
+        2. Drop 'Clock_Speed', 'Screen_Size', 'price' columns - those columns will not be used in similarity
+        3. Do One Hot Encoding for rest of the features 
+        4. Initialise Nearest Neighbour object with n_neighbours=5 and distance type cosine
+        5. Fit the encoded data
+        6. Save the object to ./model folder
+    """
+    try:
 
-            # Scale the data before finding neighbours
-            self.scaler = MinMaxScaler()
-            data = self.scaler.fit_transform(data)
+        data = pd.read_csv(DATA_AFTER_CLEANING)
 
-            # fit the data
-            self.recommender = NearestNeighbors(metric='cosine', n_neighbors=5)
-            self.recommender.fit(data)
+        # drop the clock speed and Screen Size and price
+        data.drop(['Clock_Speed', 'Screen_Size', 'price'], axis=1, inplace=True)
 
-            # Initialise the encoder
-            with open(ENCODER_FILE, 'rb') as f:
-                self.encoder = pickle.load(f)
-                f.close()
+        # Replace NAN values in Screen Resolution with 2,073,600 (1080 x 1920)
+        data['Screen_Resolution'].fillna(2073600, inplace=True)
 
-            App_Logger().log(RECOMMENDATION_LOGS, "Recommender initiated successfully")
+        # resolution to int
+        data['Screen_Resolution'] = data['Screen_Resolution'].map(lambda x: int(x))
 
-        except Exception as e:
-            App_Logger().log(RECOMMENDATION_LOGS, f"Error: Recommender initiation failed - {e}")
-            raise Exception("Error: Recommender initiation failed")
+        # Covert all features as categorical
+        for column in data.columns:
+            data[column] = pd.Categorical(data[column])
+
+        # Do one hot encoding
+        self.encoder = OneHotEncoder(drop='first', sparse_output=False)
+        data_ohe = self.encoder.fit_transform(data)
+
+        # Nearest neighbours with co-sine
+        self.cosine = NearestNeighbors(n_neighbors=5, metric='cosine')
+        self.cosine.fit(data_ohe)
+
+        with open(RECOMMENDER, 'wb') as f:
+           pickle.dump(self, f)
+           f.close()
         
+        App_Logger().log(module='recommendation', msg_type='success', message='Recommendation system initiated and saved successfully')
+    except Exception as e:
+        App_Logger().log(module='recommendation', msg_type='error', message=f'Recommendation system initiation failed due to  - {e}')
 
-    def recommend(self, X):
-        """
+    
+
+  def recommend(self, X):
+
+    """
         Steps to recommend:
-        1. Encode the data using pre-defined encoder
-        2. Scale the input using predefined scaler
+        1. Drop 'Clock_Speed', 'Screen_Size' from the data
+        2. Convert all data to categorical and find one hot encoded data with predefined encoder
         3. Find indices of the recommended products
-        4. Return the product links
-        """
-        try:
-            X = self.encoder.transform(X)
-            X = self.scaler.transform(X)
-            rec_indices = self.recommender.kneighbors(X, n_neighbors=5, return_distance=False)
-            
-            # Loading the product ids and links
-            prod_ids = pd.read_csv(PROD_ID_AND_LINK)
+        4. Return the product description, image url and price to show on frontend
+    """
+    try:
 
-            result = []
-            for idx in rec_indices[0]:
-                result.append(prod_ids['product_link'].iloc[idx])
-            return result
-        except Exception as e:
-            print(e)
+        # Drop Clock Speed and Screen Size
+        X = X.drop(['Clock_Speed', 'Screen_Size'], axis=1)
 
+        # resolution to int
+        X['Screen_Resolution'] = X['Screen_Resolution'].map(lambda x: int(x))
+
+        # Covert all features as categorical
+        for column in X.columns:
+            X[column] = pd.Categorical(X[column])
+
+        # Transform the X using existing encoder
+        X = self.encoder.transform(X)
+        rec_indices = self.cosine.kneighbors(X, n_neighbors=10, return_distance=False)
+
+        # Loading the product ids and links
+        prod_ids = pd.read_csv(PROD_ID_AND_LINK)
+        raw_data = pd.read_csv(RAW_DATA_FILE, encoding='unicode_escape')
+
+
+        result = []
+        for idx in rec_indices[0]:
+            product_id = prod_ids['product_id'].iloc[idx]
+            product = {
+                "product_description" : prod_ids['product_description'].iloc[idx],
+                "product_image" : prod_ids['product_image'].iloc[idx],
+                "product_price" : raw_data['price'][raw_data.product_id == product_id].values[0],
+                "product_link" : prod_ids['product_link'].iloc[idx]
+            }
+            result.append(product)
+        return result
+    
+    except Exception as e:
+        return []
+
+    
+
+  

@@ -99,7 +99,9 @@ class Transformation(BaseEstimator, TransformerMixin):
         Description: Extracts total pixels from a screen resolution text
         Parameter: string = the feature string
         Return: Total pixel value in integer format
-        Example: find_total_pixel('1920 x 1200 Pixel') returns 2304000
+        Example: find_total_pixel('1920 x 1200 Pixel') returns 2304000 
+                 If the data format is wrong it will return None
+                 It will be imputed at later stage
         """
         try:
             pattern = r'([0-9]{3,4})[^0-9]+([0-9]{3,4})'
@@ -108,5 +110,5 @@ class Transformation(BaseEstimator, TransformerMixin):
             return int(res[0])*int(res[1])
 
         except Exception as e:
-            raise Exception(f"In Transformation.py: inside find_total_pixel: {e}")
+            return None
 

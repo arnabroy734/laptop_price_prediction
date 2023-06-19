@@ -19,6 +19,8 @@ DATA_AFTER_CLEANING = "./data/data_after_cleaning.csv"
 # File to save preprocessed data
 PREPROCESSED_DATA_FILE = './data/preprocessed.csv'
 
+
+
 # File to save product ids and links after dropping columns
 PROD_ID_AND_LINK = "./data/product_ids_and_links_after_duplicates.csv"
 
@@ -44,5 +46,8 @@ VALIDATION_LOG = "./logs/vadiation_log.txt"
 
 # Recommender logs
 RECOMMENDATION_LOGS = "./logs/recommendation_log.txt"
+
+# Recommendation system 
+RECOMMENDER = "./models/recommender.pkl"
 
 

@@ -51,15 +51,15 @@ class Decision:
     self.test_score = r2_score(y_test, y_pred)
 
     # Save the training logs
-    App_Logger().log(file_path=TRAIN_LOGS, log_message=f"Decision Tree: Best Model: {self.best_model}")
-    App_Logger().log(file_path=TRAIN_LOGS, log_message=f"Decision Tree: CV Score: {self.cv_score}")
-    App_Logger().log(file_path=TRAIN_LOGS, log_message=f"Decision Tree: Test Score: {self.test_score}")
+    App_Logger().log(module="training", msg_type='success', message=f"Decision Tree: Best Model: {self.best_model}")
+    App_Logger().log(module="training", msg_type='success', message=f"Decision Tree: CV Score: {self.cv_score}")
+    App_Logger().log(module="training", msg_type='success', message=f"Decision Tree: Test Score: {self.test_score}")
 
     # Save the model to ./models folder
     with open(MODELS['decision'], 'wb') as f:
       pickle.dump(self.best_model, f)
       f.close()
-      App_Logger().log(file_path=TRAIN_LOGS, log_message=f"Decision Tree: Model Saved: {MODELS['decision']}")
+      App_Logger().log(module="training", msg_type='success', message=f"Decision Tree: Model Saved: {MODELS['decision']}")
 
 
 

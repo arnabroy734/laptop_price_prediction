@@ -21,9 +21,11 @@ class BufferProductLinks:
                 writer = csv.writer(f)
                 writer.writerow(['PRODUCT_ID', 'PRODUCT_LINK'])
                 f.close()
-        except:
-            App_Logger().log(CRAWL_LOGS, f'Error: cannot open file {LINK_FILE}')
-            pass
+            App_Logger().log(module="webcrawler", msg_type="success", message=f"File {LINK_FILE} successfully created")
+    
+        except Exception as e:
+            App_Logger().log(module="webcrawler", msg_type="error", message=f"File {LINK_FILE} cannot be opened  - {e}")
+            
 
     def process_item(self, item, spider):
         """
@@ -41,9 +43,9 @@ class BufferProductLinks:
                 writer.writerow([pid, short_url])
                 f.close()
             return item
-        except:
-            App_Logger().log(CRAWL_LOGS, f'Error: cannot write to file {LINK_FILE}')
-            pass
+        except Exception as e:
+            App_Logger().log(module="webcrawler", msg_type="error", message=f"product id and url cannot be saved to file {LINK_FILE}")
+            
 
     def extract_product_id(self, url):
         """
@@ -98,9 +100,12 @@ class SaveProductDetails:
                 writer = csv.DictWriter(f,self.fieldnames)
                 writer.writeheader()
                 f.close()
-        except:
-            App_Logger().log(CRAWL_LOGS, f'Error: cannot create file {RAW_DATA_FILE}')
-            pass
+            App_Logger().log(module="webcrawler", msg_type="success", message=f"File {RAW_DATA_FILE} opened successfully")
+            
+        except Exception as e:
+            App_Logger().log(module="webcrawler", msg_type="error", message=f"File {RAW_DATA_FILE} cannot be opened  - {e}")
+
+
 
     def process_item(self, item, spider):
         """
@@ -108,11 +113,13 @@ class SaveProductDetails:
                      Item is then written to train.csv file
         """
         try:
-            with open(RAW_DATA_FILE, 'a', newline='') as f:
-                writer = csv.DictWriter(f, self.fieldnames)
-                writer.writerow(dict(item))
-                f.close()
+            if item is not None:
+                with open(RAW_DATA_FILE, 'a', newline='') as f:
+                    writer = csv.DictWriter(f, self.fieldnames)
+                    writer.writerow(dict(item))
+                    f.close()
 
         except Exception as e:
-            App_Logger().log(CRAWL_LOGS, f'Error: cannot write to file {RAW_DATA_FILE}')
-            pass
+            App_Logger().log(module="webcrawler", msg_type="error", message=f"Product details cannot be saved to file {RAW_DATA_FILE}")
+
+            

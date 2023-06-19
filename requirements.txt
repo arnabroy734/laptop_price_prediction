@@ -12,6 +12,7 @@ cryptography==41.0.1
 cssselect==1.2.0
 debugpy @ file:///D:/bld/debugpy_1680755654494/work
 decorator @ file:///home/conda/feedstock_root/build_artifacts/decorator_1641555617451/work
+dnspython==2.3.0
 executing @ file:///home/conda/feedstock_root/build_artifacts/executing_1667317341051/work
 filelock==3.12.1
 hyperlink==21.0.0
@@ -46,8 +47,10 @@ pyasn1-modules==0.3.0
 pycparser==2.21
 PyDispatcher==2.0.7
 Pygments @ file:///home/conda/feedstock_root/build_artifacts/pygments_1681904169130/work
+pymongo==4.3.3
 pyOpenSSL==23.2.0
 python-dateutil @ file:///home/conda/feedstock_root/build_artifacts/python-dateutil_1626286286081/work
+python-dotenv==1.0.0
 pytz==2023.3
 pywin32==304
 pyzmq @ file:///D:/bld/pyzmq_1685519522122/work

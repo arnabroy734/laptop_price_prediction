@@ -1,5 +1,6 @@
 from sklearn.base import BaseEstimator, TransformerMixin
 from urls_and_paths.path import PROD_ID_AND_LINK
+from logs.logger import App_Logger
 
 class DropDuplicates(BaseEstimator, TransformerMixin):
     """
@@ -12,6 +13,8 @@ class DropDuplicates(BaseEstimator, TransformerMixin):
         
         data_copy = X.copy()
         data_copy.drop_duplicates(inplace=True)
+        total_records = data_copy.shape[0]
+        App_Logger().log(module='preprocessing', msg_type='success', message=f'Duplicate rows dropped - after dropping duplicates total records saved is {total_records}')
         return data_copy
 
 

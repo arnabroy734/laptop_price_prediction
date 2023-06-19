@@ -22,9 +22,9 @@ class Preprocessor:
     def __init__(self):
         try:
             self.data = pd.read_csv(RAW_DATA_FILE, encoding='unicode_escape')
-            App_Logger().log(file_path=PRE_LOGS, log_message="preprocessing: raw data read successfully and Preprocessor object initialised")
+            App_Logger().log(module='preprocessing', msg_type='success', message="raw data read successfully and Preprocessor object initialised")
         except:
-            App_Logger().log(file_path=PRE_LOGS, log_message="preprocessing: Error in initialising Preprocessor object - raw data cannot be read")
+            App_Logger().log(module='preprocessing', msg_type='error', message="Error in initialising Preprocessor object - raw data cannot be read")
             raise Exception('Preprocessor cannot be initialised - raw data file could not be found')
 
     
@@ -44,10 +44,10 @@ class Preprocessor:
 
             self.data.to_csv(PREPROCESSED_DATA_FILE, index=False)
             
-            App_Logger().log(file_path=PRE_LOGS, log_message="preprocessing: data successfully preprocessed and saved")
+            App_Logger().log(module='preprocessing', msg_type='success', message=f"data successfully preprocessed and saved to {PREPROCESSED_DATA_FILE}")
         
         except Exception as e:
-            App_Logger().log(PRE_LOGS, f"preprocessing: Error in preprocessing - {e}")
+            App_Logger().log(module='preprocessing', msg_type='error', message= f"Error in preprocessing - {e}")
 
 
 
@@ -72,5 +72,5 @@ class EncodingPipeline:
 class ImputerPipeline:
     def __init__(self):
         self.pipeline = Pipeline([
-            ('CloclSpeedNanImputer', CloclSpeedNanImputer())
+            ('CloclSpeedNanImputer', NanImputer())
         ])

@@ -38,7 +38,7 @@ class TrainBestModel:
         with open(BEST_MODEL, 'wb') as f:
             pickle.dump(best_model, f)
             f.close()
-            App_Logger().log(file_path=TRAIN_LOGS, log_message=f"Training: Training is complete")
-            App_Logger().log(file_path=TRAIN_LOGS, log_message=f"Training: Best Model: {best_model}")
-            App_Logger().log(file_path=TRAIN_LOGS, log_message=f"Training: Best Model test score: {best_test_score}")
-            App_Logger().log(file_path=TRAIN_LOGS, log_message=f"Training: Best Model saved: {BEST_MODEL}")
+            App_Logger().log(module='training', msg_type='success', message=f"Training: Training is complete")
+            App_Logger().log(module='training', msg_type='success', message=f"Training: Best Model: {best_model}")
+            App_Logger().log(module='training', msg_type='success', message=f"Training: Best Model test score: {best_test_score}")
+            App_Logger().log(module='training', msg_type='success', message=f"Training: Best Model saved: {BEST_MODEL}")
