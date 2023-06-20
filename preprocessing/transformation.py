@@ -1,6 +1,7 @@
 from sklearn.base import BaseEstimator, TransformerMixin
 import re
 import pandas as pd
+import numpy as np
 
 class Transformation(BaseEstimator, TransformerMixin):
     """
@@ -44,13 +45,14 @@ class Transformation(BaseEstimator, TransformerMixin):
             data['Graphic_Processor'] = data['Graphic_Processor'].map(lambda x: category_map[x])
 
             data['Screen_Size'] = data['Screen_Size'].map(self.extract_cm_value)
+            data = self.impute_outliers_cm(data)
 
             data.loc[data.Screen_Resolution == '1080p pixel', 'Screen_Resolution']= '1080 x 1920'
             data.loc[data.Screen_Resolution == '1080 pixel', 'Screen_Resolution']= '1080 x 1920'
             data['Screen_Resolution'] = data['Screen_Resolution'].map(self.find_total_pixel)
 
             data['SSD_Capacity'] = data['SSD_Capacity'].fillna('NO_SSD')
-            data.loc[data.SSD_Capacity == '16 GB', 'SSD_Capacity'] = '512 GB'
+            data.loc[(data.SSD_Capacity == '16 GB')|(data.SSD_Capacity == '8 GB'), 'SSD_Capacity'] = '512 GB'
 
             return data
 
@@ -69,13 +71,18 @@ class Transformation(BaseEstimator, TransformerMixin):
         Return: float number 
         Example: extract_max('3.3 GHz upto max turbo frequency at 4.4 Ghz') returns 4.4
         """
+       
         try:
-            pattern = r'[0-9].[0-9]'
+            string = string.lower()
+            pattern = r'[0-9]\.*[0-9]*(?=\s*ghz)'
             result = re.findall(pattern, string)
             result = [float(i) for i in result]
             return max(result)
         except:
-            return None
+            try:
+                return float(string)
+            except:
+                return None
 
     def extract_cm_value(self, string):
         """
@@ -93,6 +100,17 @@ class Transformation(BaseEstimator, TransformerMixin):
 
         except Exception as e:
             raise Exception(f"In Transformation.py: inside extract_cm_value: {e}")
+        
+    def impute_outliers_cm(self, data):
+        """
+        Description: Impute lower outliers with lower fence
+        """
+        X = data.copy()
+        q1, q3 = np.quantile(X['Screen_Size'], q=[0.25, 0.75])
+        IQR = q3 - q1
+        lower = q1 - 1.5*IQR
+        X.loc[X.Screen_Size < lower, 'Screen_Size'] = lower
+        return X
     
     def find_total_pixel(self, string):
         """

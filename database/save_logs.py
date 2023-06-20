@@ -39,3 +39,4 @@ class SaveLogs:
             return list(res)
         except Exception as e:
             print(f"SaveLogs: logs cannot be retrieved {e}")
+            return []

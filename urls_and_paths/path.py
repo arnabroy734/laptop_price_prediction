@@ -4,6 +4,9 @@ LINK_FILE = "./webcrawler/productlinks.csv"
 # File to store raw data after scraping
 RAW_DATA_FILE = "./data/raw.csv"
 
+# Raw data pandas profiling
+RAW_DATA_PROFILE = "./data/raw_profile.pkl"
+
 # File to save crawler logs
 CRAWL_LOGS = "./logs/crawl_logs.txt"
 

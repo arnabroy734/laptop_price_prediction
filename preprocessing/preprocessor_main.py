@@ -4,15 +4,16 @@ from sklearn.pipeline import Pipeline, make_pipeline
 from preprocessing.data_cleaning import *
 from preprocessing.transformation import *
 import pandas as pd
-from urls_and_paths.path import RAW_DATA_FILE
+from urls_and_paths.path import RAW_DATA_FILE, RAW_DATA_PROFILE
 from preprocessing.encoding import *
 from preprocessing.imputation import *
 import pickle
+import pandas_profiling
 
 class Preprocessor:
     """
     Description: This class will do following steps:
-    1. Read the raw data
+    1. Read the raw data and save the pandas profiling 
     2. Clean and transform the raw data
     3. Do categorical feature encoding 
     4. Save the encoding file in .pkl format for feature transformation in future
@@ -22,6 +23,12 @@ class Preprocessor:
     def __init__(self):
         try:
             self.data = pd.read_csv(RAW_DATA_FILE, encoding='unicode_escape')
+            profile = self.data.profile_report()
+            
+            with open(RAW_DATA_PROFILE, 'wb') as f:
+                pickle.dump(profile, f)
+                f.close()
+
             App_Logger().log(module='preprocessing', msg_type='success', message="raw data read successfully and Preprocessor object initialised")
         except:
             App_Logger().log(module='preprocessing', msg_type='error', message="Error in initialising Preprocessor object - raw data cannot be read")

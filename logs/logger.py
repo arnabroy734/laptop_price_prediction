@@ -17,4 +17,6 @@ class App_Logger:
         # except:
         #     pass
         SaveLogs().savelog(module, msg_type, message)
-            
+    
+    def get_logs(self, module=None, msg_type=None):
+        return SaveLogs().find_logs(module, msg_type)

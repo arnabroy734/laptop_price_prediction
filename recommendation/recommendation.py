@@ -9,20 +9,17 @@ from logs.logger import App_Logger
 
 
 class Recommendation:
-  """
-  This class will find matching product based on given input
-  In this we will use Nearest Neighbour to find 5 neaest neighbours with co-sine similarity
-  """
+  
 
   def __init__(self):
     """
-        Steps to initialise:
-        1. Initialise the dataset - the dataset after cleaning will be used
-        2. Drop 'Clock_Speed', 'Screen_Size', 'price' columns - those columns will not be used in similarity
-        3. Do One Hot Encoding for rest of the features 
-        4. Initialise Nearest Neighbour object with n_neighbours=5 and distance type cosine
-        5. Fit the encoded data
-        6. Save the object to ./model folder
+    Steps to initialise:
+    1. Initialise the dataset - the dataset after cleaning will be used
+    2. Drop 'Clock_Speed', 'Screen_Size', 'price' columns - those columns will not be used in similarity
+    3. Do One Hot Encoding for rest of the features 
+    4. Initialise Nearest Neighbour object with n_neighbours=5 and distance type cosine
+    5. Fit the encoded data
+    6. Save the object to ./model folder
     """
     try:
 
