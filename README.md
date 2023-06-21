@@ -127,6 +127,7 @@ To run this project perform following steps -
   - Create a database in MongoDB Atlas manually. The name of the databse should be defined inside .env file as variable name ```DB```
   - Create a collection inside this database. The name of the collection should be defined inside .env file as variable name ```APP_LOGS```
   - The database connection url should be defined inside .env file as variable name ```CONN_URL```
+5. Run ```streamlit run app.py``` from command prompt inside root folder and the web application will start.
  
 
 ## Technologies Used
