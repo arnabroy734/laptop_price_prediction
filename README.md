@@ -18,6 +18,7 @@
   - [How to run this project](#how-to-run-this-project)
  - [Technologies used](#technologies-used)
  - [Sample test results](#sample-test-result)
+ - [Deployed version of this repo](https://laptop-price-prediction.streamlit.app/)
  
 &nbsp;
 
