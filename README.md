@@ -6,8 +6,8 @@
     2. [Data preprocessing](#2-cleaning-analysing-and-preprocessing-the-data)
     3. [Regression model](#3-building-and-tuning-model-to-solve-the-price-prediction-problem)
     4. [Recommendation system](#4-build-a-simple-recommendation-system-to-recommend-similar-laptops)
- 3. Project description and architecture</a></p>
- 4. Technologies used</a></p>
+  - [Project description and architecture](#project-architecture)
+  - [Technologies used](#technologies-used)
  5. How to run this project</a></p>
  6. Sample test results</a></p>
  
@@ -39,12 +39,31 @@
  
  ![image](https://github.com/arnabroy734/laptop_price_prediction/assets/86049035/23df7dfb-aa81-4c25-9cff-6e7963c949c4)
 
-We used the the dataset to build a regression model to predict price using the available features. We have done hyperparameter tuning on different models and saved the model as best model which gives best performance. **We used [R2 score](https://benjaminobi.medium.com/what-really-is-r2-score-in-linear-regression-20cafdf5b87c) as performance metric.**
+We used the the dataset to build a regression model to predict price using the available features. We have done hyperparameter tuning on different models and saved the model as the best one which gives gives performance score. **We used [R2 score](https://benjaminobi.medium.com/what-really-is-r2-score-in-linear-regression-20cafdf5b87c) as performance metric.**
 
 ### 4. Build a simple recommendation system to recommend similar laptops
 We have built a simple recommendation system which will recommend top 5 laptops having similarity with the configuration selected by the user. It is buit on [Nearest Neighbour](https://scikit-learn.org/stable/modules/neighbors.html) using [cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity)
+
+## Project Architecture
+
+## Technologies Used
+#### 1. Web Scraping
+<img src="https://scrapy.org/img/scrapylogo.png" width=300>
  
- 
+#### 2. Data preprocessing
+<img src="https://pandas.pydata.org/static/img/pandas.svg" width=300>
+
+#### 3. Data visualisation
+<img src="https://matplotlib.org/stable/_images/sphx_glr_logos2_003.png" width=300>
+<img src="https://seaborn.pydata.org/_images/logo-wide-lightbg.svg" width=300>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Plotly-logo.png/800px-Plotly-logo.png?20220718173326" width=300>
+
+#### 4. ML model building
+<img src="https://scikit-learn.org/stable/_static/scikit-learn-logo-small.png" width=300>
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/69/XGBoost_logo.png?20190625122704" width=300>
+
+#### 5. Web application
+<img src="https://streamlit.io/images/brand/streamlit-logo-primary-colormark-darktext.png" width=300>
 
 
  
