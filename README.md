@@ -3,7 +3,7 @@
   - [Problem statement](#problem-statement)
   - [Approach to solve the problem](#approach-to-solve-the-problem)
     1. [Data collection](#1-collecting-data)
-    2. [Data preprocessing](#2-cleaning,-analysing-and-preprocessing-the-data)
+    2. [Data preprocessing](#2-cleaning-analysing-and-preprocessing-the-data)
     3. [Regression model](#3-building-and-tuning-model-to-solve-the-price-prediction-problem)
     4. [Recommendation system](#4-build-a-simple-recommendation-system-to-recommend-similar-laptops)
  3. Project description and architecture</a></p>
