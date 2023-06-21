@@ -80,6 +80,15 @@ In this module separate classes are created to build separate models. In each cl
 
 Inside class **TrainBestModel** four mododels (**[Linear Model](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html), [Decision Tree](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html), [Random Forest](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html), [XGBoost](https://xgboost.readthedocs.io/en/stable/parameter.html)**) are used for hyperparameter tuning and the model having highest test score is chosed as the best one. The best model insformation is saved to application logs and the best model itself is saved inside [**/models**](models).
 
+**As per latest training result XGBoost was selected as best model with test R2 score around 90%.** 
+
+### 5. recommendation
+The steps of building recommendation system are as follows:
+ - dataset saved after **DataCleaningPipeline** is used for buiding recommendation system. 
+ - Clock speed and screen size features are not used in recommendation system, so those columns are dropped. 
+ - Every feature is converted to Categorical and then One Hot Encoding is done. 
+ - The encoded data is then fit to [**NearestNeighbour**](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.NearestNeighbors.html#sklearn.neighbors.NearestNeighbors) model. Cosine similarity is used to find as the metric.
+ - The Recommendation object is then saved inside [**/models**](models).
 
 ## Technologies Used
 #### 1. Web Scraping
