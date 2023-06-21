@@ -90,6 +90,14 @@ The steps of building recommendation system are as follows:
  - The encoded data is then fit to [**NearestNeighbour**](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.NearestNeighbors.html#sklearn.neighbors.NearestNeighbors) model. Cosine similarity is used to find as the metric.
  - The Recommendation object is then saved inside [**/models**](models).
 
+### 6. prediction
+This module is used during runtime. Two separate classes are created inside this module - 
+ - **PredictionPipeline** : de-serialises the encoder and best model objects, input data is first passed to encoder and then to best model for prediction.
+ - **RecommendationPipeline** : de-serialises the Recommendation object, input data is fed to recommender and top five results are returned. 
+
+### 7. logs
+The purpose of this module is to save logs to database. Each log has a module name (e.g., training or preprocessing), timestamp, type (success or failure) and log message. During development the logs were stored as plain text file but it was migrated to MongoDB Atlas afterwards. The connection url is saved inside .env file which is not shared for security purpose.
+
 ## Technologies Used
 #### 1. Web Scraping
 <img src="https://scrapy.org/img/scrapylogo.png" width=300>
