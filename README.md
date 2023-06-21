@@ -113,7 +113,7 @@ There are two scripts in the project root folder. Those are two entrypoints.
 [**retrain.py**](retrain.py) is used to scrape fresh data, preprocess and retrain the model.
 [**app.py**](app.py) is used to run the streamlit web application. In this script the **PredictionPipeline** and **RecommendationPipeline** are de-serialised and initialised. Then the streamlit app is run.
 
-### Here is the architecture of retraining pipeline - 
+### Here is the architecture of retraining pipeline 
 
 ![image](https://github.com/arnabroy734/laptop_price_prediction/assets/86049035/695256fb-a259-4574-b8fc-056dcd1fdf89)
 
