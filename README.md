@@ -29,6 +29,15 @@
  The data is cleaned first by extracting useful information (e.g., the maximum clock speed, screen size, resolution etc.). In this dataset our target variable is price of laptop, so relationships of different features with the target variable are also explored. After data cleaning the categorical variables are encoded to numerical forms by [target oriented feature encoding](https://medium.com/@aryamohapatra/target-encoding-create-some-relation-between-target-variable-and-the-encoded-labels-2ed0d172fceb).
  
  **Please refer the [EDA notebook](notebooks/EDA_On_Raw_Data.ipynb) for more details.**
+ 
+ ### 3. Building and tuning model to solve the price prediction problem
+ After preprocessing the data looks like this - 
+ 
+ ![image](https://github.com/arnabroy734/laptop_price_prediction/assets/86049035/23df7dfb-aa81-4c25-9cff-6e7963c949c4)
+
+We used the the dataset to build a regression model to predict price using the available features. We have done hyperparameter tuning on different models and saved the model as best model which gives best performance. We used [R2 score](https://benjaminobi.medium.com/what-really-is-r2-score-in-linear-regression-20cafdf5b87c) as performance metric.
+ 
+ 
 
 
  
