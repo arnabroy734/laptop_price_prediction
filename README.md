@@ -21,7 +21,9 @@
  
  ### 2. Analysing and cleaning the data
  The raw data collected looks like this - 
- ![image](https://github.com/arnabroy734/laptop_price_prediction/assets/86049035/dfc34938-5e23-4c95-a4d3-8fb78786595d)
+ ![image](https://github.com/arnabroy734/laptop_price_prediction/assets/86049035/423e4cca-03d6-4fa0-9500-d935923469b2)
+ The data is cleaned first by extracting useful information (e.g., the maximum clock speed, screen size, resolution etc.). In this dataset our target variable is price of laptop, so relationships of different features with the target variable are also explored. After data cleaning the categorical variables are encoded to numerical forms by [target oriented feature encoding](https://medium.com/@aryamohapatra/target-encoding-create-some-relation-between-target-variable-and-the-encoded-labels-2ed0d172fceb).
+
 
  
  
