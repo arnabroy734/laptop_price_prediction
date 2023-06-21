@@ -44,7 +44,20 @@ We used the the dataset to build a regression model to predict price using the a
 ### 4. Build a simple recommendation system to recommend similar laptops
 We have built a simple recommendation system which will recommend top 5 laptops having similarity with the configuration selected by the user. It is buit on [Nearest Neighbour](https://scikit-learn.org/stable/modules/neighbors.html) using [cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity)
 
+&nbsp;
+
 ## Project Architecture
+The project is divided into several modules where each module performs a predefined job. Below is the brief description of each module - 
+
+### 1. webcrawler
+The module scrapes data from e-commerce website in two steps - 
+ - In step 1 the all the product urls and ids will be collected and saved in one file (**productlinks.csv**)
+ - In step 2 product specific details (e.g., processor name, SSD_Capacity) will be collected for each product url found in step 1. The data will be saved as **raw.csv**.
+
+### 2. validation
+The module has two purposes.
+ - **validation_raw_data.py** validates the data from raw.csv file. It checks whether nan values are present in certain columns. If nan value is found the validation fails.
+ - **validation_prediction.py** checks the input data for prediction. It checks the column names, ordering of the columns, data type for each column, presence of new category for categorical features. If either of the checks goes wrong the validated fails.
 
 ## Technologies Used
 #### 1. Web Scraping
