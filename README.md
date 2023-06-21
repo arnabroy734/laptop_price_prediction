@@ -76,7 +76,9 @@ In this module separate classes are created to build separate models. In each cl
  - Hyperparameter tuning is done on the train data using [**grid search cv**](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html)
  - The performance metric used is R2 score
  - The R2 score on test data is checked and the score is saved in application logs
- - The best model is also saved inside [**./models**](models)
+ - The best model is also saved inside [**/models**](models)
+
+Inside class **TrainBestModel** four mododels (**[Linear Model](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html), [Decision Tree](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html), [Random Forest](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html), [XGBoost](https://xgboost.readthedocs.io/en/stable/parameter.html)**) are used for hyperparameter tuning and the model having highest test score is chosed as the best one. The best model insformation is saved to application logs and the best model itself is saved inside [**/models**](models).
 
 
 ## Technologies Used
