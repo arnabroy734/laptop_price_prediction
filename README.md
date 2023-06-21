@@ -69,7 +69,14 @@ There are three pipelines defined inside [**preprocessor_main.py**](preprocessin
 
 After running all the pipelines the output data will be stored as [**preprocessed.csv**](data/preprocessed.csv)
 
-
+### 4. training
+In this module separate classes are created to build separate models. In each class the workflow is as follows - 
+ - The parameters are defined for that model.
+ - The preprocessed data is read, the data is then split in train and test
+ - Hyperparameter tuning is done on the train data using [**grid search cv**](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html)
+ - The performance metric used is R2 score
+ - The R2 score on test data is checked and the score is saved in application logs
+ - The best model is also saved inside [**./models**](models)
 
 
 ## Technologies Used
