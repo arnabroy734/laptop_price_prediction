@@ -2,10 +2,10 @@
  ## Table of contents
   - [Problem statement](#problem-statement)
   - [Approach to solve the problem](#approach-to-solve-the-problem)
-    1. [Data collection](#1-collecting-data)
-    2. [Data preprocessing](#2-cleaning-analysing-and-preprocessing-the-data)
-    3. [Regression model](#3-building-and-tuning-model-to-solve-the-price-prediction-problem)
-    4. [Recommendation system](#4-build-a-simple-recommendation-system-to-recommend-similar-laptops)
+    - [Data collection](#1-collecting-data)
+    - [Data preprocessing](#2-cleaning-analysing-and-preprocessing-the-data)
+    - [Regression model](#3-building-and-tuning-model-to-solve-the-price-prediction-problem)
+    - [Recommendation system](#4-build-a-simple-recommendation-system-to-recommend-similar-laptops)
   - [Project description and architecture](#project-architecture)
     - [Module webcrawler](#1-webcrawler)
     - [Module validation](#2-validation)
@@ -14,11 +14,10 @@
     - [Module recommendation](#5-recommendation)
     - [Module prediction](#6-prediction)
     - [Module logs](#7-logs)
-    - [Architecture](#here-is-the-architecture-of-retraining-pipeline)
+    - [Architecture of retraining pipeline](#here-is-the-architecture-of-retraining-pipeline)
+  - [How to run this project](#how-to-run-this-project)
  - [Technologies used](#8-technologies-used)
-    
- 5. How to run this project</a></p>
- 6. Sample test results</a></p>
+ 7. Sample test results</a></p>
  
 &nbsp;
 
@@ -117,6 +116,18 @@ There are two scripts in the project root folder. Those are two entrypoints.
 
 ![image](https://github.com/arnabroy734/laptop_price_prediction/assets/86049035/695256fb-a259-4574-b8fc-056dcd1fdf89)
 
+&nbsp;
+
+## How to run this project
+To run this project perform following steps - 
+1. Clone the project to your system 
+2. Create a [**virtual environment**](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
+3. Run ```pip install -r requirements.txt``` to install packages
+4. For application logging follow one of the following steps:
+  - Create a database in MongoDB Atlas manually. The name of the databse should be defined inside .env file as variable name ```DB```
+  - Create a collection inside this database. The name of the collection should be defined inside .env file as variable name ```APP_LOGS```
+  - The database connection url should be defined inside .env file as variable name ```CONN_URL```
+ 
 
 ## Technologies Used
 #### 1. Web Scraping
