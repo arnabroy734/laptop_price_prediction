@@ -7,7 +7,6 @@
     3. [Regression model](#3-building-and-tuning-model-to-solve-the-price-prediction-problem)
     4. [Recommendation system](#4-build-a-simple-recommendation-system-to-recommend-similar-laptops)
   - [Project description and architecture](#project-architecture)
-  - [Technologies used](#technologies-used)
     - [Module webcrawler](#webcrawler)
     - [Module validation](#validation)
     - [Module preprocessing](#preprocessing)
@@ -15,6 +14,8 @@
     - [Module recommendation](#recommendation)
     - [Module prediction](#prediction)
     - [Module logs](#logs)
+ - [Technologies used](#technologies-used)
+    
  5. How to run this project</a></p>
  6. Sample test results</a></p>
  
