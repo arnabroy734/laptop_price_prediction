@@ -8,6 +8,13 @@
     4. [Recommendation system](#4-build-a-simple-recommendation-system-to-recommend-similar-laptops)
   - [Project description and architecture](#project-architecture)
   - [Technologies used](#technologies-used)
+    - [Module webcrawler](#webcrawler)
+    - [Module validation](#validation)
+    - [Module preprocessing](#preprocessing)
+    - [Module training](#training)
+    - [Module recommendation](#recommendation)
+    - [Module prediction](#prediction)
+    - [Module logs](#logs)
  5. How to run this project</a></p>
  6. Sample test results</a></p>
  
