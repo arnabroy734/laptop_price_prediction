@@ -16,8 +16,8 @@
     - [Module logs](#7-logs)
     - [Architecture of retraining pipeline](#here-is-the-architecture-of-retraining-pipeline)
   - [How to run this project](#how-to-run-this-project)
- - [Technologies used](#8-technologies-used)
- 7. Sample test results</a></p>
+ - [Technologies used](#technologies-used)
+ - [Sample test results](#sample-test-result)
  
 &nbsp;
 
@@ -148,6 +148,32 @@ To run this project perform following steps -
 
 #### 5. Web application
 <img src="https://streamlit.io/images/brand/streamlit-logo-primary-colormark-darktext.png" width=300>
+
+&nbsp;
+
+## Sample test result
+
+[**Deployed version of this repo**](https://laptop-price-prediction.streamlit.app/)
+
+![image](https://github.com/arnabroy734/laptop_price_prediction/assets/86049035/a5f82825-ebbd-4afd-a221-92071e9283f8)
+
+![image](https://github.com/arnabroy734/laptop_price_prediction/assets/86049035/48dd2b7d-dfb7-4b82-9b7c-2787362dce92)
+
+![image](https://github.com/arnabroy734/laptop_price_prediction/assets/86049035/114ae836-c6db-4353-8557-8057632e62c6)
+
+![image](https://github.com/arnabroy734/laptop_price_prediction/assets/86049035/7de7de64-2867-4e9d-8e8b-365c410faab5)
+
+![image](https://github.com/arnabroy734/laptop_price_prediction/assets/86049035/fa5a4b6b-4e25-4623-98ba-e9446cb2e30d)
+
+![image](https://github.com/arnabroy734/laptop_price_prediction/assets/86049035/b5989ddd-d2db-46a1-8490-1fdfb346ac25)
+
+![image](https://github.com/arnabroy734/laptop_price_prediction/assets/86049035/cc25eeba-ef60-4918-9d2f-9394ecd03a1c)
+
+
+
+
+
+
 
 
  
