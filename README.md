@@ -7,14 +7,15 @@
     3. [Regression model](#3-building-and-tuning-model-to-solve-the-price-prediction-problem)
     4. [Recommendation system](#4-build-a-simple-recommendation-system-to-recommend-similar-laptops)
   - [Project description and architecture](#project-architecture)
-    - [Module webcrawler](#webcrawler)
-    - [Module validation](#validation)
-    - [Module preprocessing](#preprocessing)
-    - [Module training](#training)
-    - [Module recommendation](#recommendation)
-    - [Module prediction](#prediction)
-    - [Module logs](#logs)
- - [Technologies used](#technologies-used)
+    - [Module webcrawler](#1-webcrawler)
+    - [Module validation](#2-validation)
+    - [Module preprocessing](#3-preprocessing)
+    - [Module training](#4-training)
+    - [Module recommendation](#5-recommendation)
+    - [Module prediction](#6-prediction)
+    - [Module logs](#7-logs)
+    - [Architecture](#here-is-the-architecture-of-retraining-pipeline)
+ - [Technologies used](#8-technologies-used)
     
  5. How to run this project</a></p>
  6. Sample test results</a></p>
@@ -105,6 +106,17 @@ This module is used during runtime. Two separate classes are created inside this
 
 ### 7. logs
 The purpose of this module is to save logs to database. Each log has a module name (e.g., training or preprocessing), timestamp, type (success or failure) and log message. During development the logs were stored as plain text file but it was migrated to MongoDB Atlas afterwards. The connection url is saved inside .env file which is not shared for security purpose.
+
+### Entrypoint of the project
+There are two scripts in the project root folder. Those are two entrypoints.
+
+[**retrain.py**](retrain.py) is used to scrape fresh data, preprocess and retrain the model.
+[**app.py**](app.py) is used to run the streamlit web application. In this script the **PredictionPipeline** and **RecommendationPipeline** are de-serialised and initialised. Then the streamlit app is run.
+
+### Here is the architecture of retraining pipeline - 
+
+![image](https://github.com/arnabroy734/laptop_price_prediction/assets/86049035/695256fb-a259-4574-b8fc-056dcd1fdf89)
+
 
 ## Technologies Used
 #### 1. Web Scraping
