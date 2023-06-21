@@ -17,5 +17,11 @@
  
  ## Approach to solve the problem
  ### 1. Collecting data
+ There are some datasets available on the internet to solve this problem, but the those datasets do not reflect the current price trend. As we know that price of any commodity varies with ups and down in the market it is always recommended to collect latest data to solve any commodity price prediction problem. **That is why we scraped data of available laptops from an e-commerce website**.
+ 
+ ### 2. Analysing and cleaning the data
+ The raw data collected looks like this - 
+ ![image](https://github.com/arnabroy734/laptop_price_prediction/assets/86049035/dfc34938-5e23-4c95-a4d3-8fb78786595d)
+
  
  
