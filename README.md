@@ -51,13 +51,26 @@ The project is divided into several modules where each module performs a predefi
 
 ### 1. webcrawler
 The module scrapes data from e-commerce website in two steps - 
- - In step 1 the all the product urls and ids will be collected and saved in one file (**productlinks.csv**)
- - In step 2 product specific details (e.g., processor name, SSD_Capacity) will be collected for each product url found in step 1. The data will be saved as **raw.csv**.
+ - In step 1 the all the product urls and ids will be collected and saved in one file ([**productlinks.csv**](webcrawler/productlinks.csv))
+ - In step 2 product specific details (e.g., processor name, SSD_Capacity) will be collected for each product url found in step 1. The data will be saved as [**raw.csv**](data/raw.csv).
 
 ### 2. validation
 The module has two purposes.
- - **validation_raw_data.py** validates the data from raw.csv file. It checks whether nan values are present in certain columns. If nan value is found the validation fails.
- - **validation_prediction.py** checks the input data for prediction. It checks the column names, ordering of the columns, data type for each column, presence of new category for categorical features. If either of the checks goes wrong the validated fails.
+ - [**validation_raw_data.py**](validation/validation_raw_data.py) validates the data from raw.csv file. It checks whether nan values are present in certain columns. If nan value is found the validation fails.
+ - [**validation_prediction.py**](validation/validation_prediction.py) checks the input data for prediction. It checks the column names, ordering of the columns, data type for each column, presence of new category for categorical features. If either of the checks goes wrong the validated fails.
+ 
+### 3. preprocessing
+In this module separate classes are defined for separate purposed. For example, **DropDuplicates** class inside [**data_cleaning.py**](preprocessing/data_cleaning.py) drops all duplicate columns in the dataset. Each class is extention of **BaseEstimator, TransformerMixin**. So, each class has its own fit and transform method. This is done to create customised pipelines. 
+
+There are three pipelines defined inside [**preprocessor_main.py**](preprocessing/preprocessor_main.py) - 
+  - **DataCleaningPipeline** : to remove duplicate columns, to drop columns that are not required for model builing, extract numerical values from string data (e.g., extract screen size, clock speed, screen resolution), fill nan values in Graphics_Memory and SSD_Capacity columns
+  - **EncodingPipeline**: to encode categorical values (Processor Name, SSD, GPU and Touchscreen) to numerical. The encoder model will be saved as **models/encoder.pkl** because it will be required during prediction.
+  - **ImputerPipeline**: there will be some nan values in Clock_Speed and Screen_Resolution columns. Those values are imputed using [**KNN Imputer**](https://scikit-learn.org/stable/modules/generated/sklearn.impute.KNNImputer.html) technique.
+
+After running all the pipelines the output data will be stored as [**preprocessed.csv**](data/preprocessed.csv)
+
+
+
 
 ## Technologies Used
 #### 1. Web Scraping
