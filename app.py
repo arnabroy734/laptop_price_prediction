@@ -1,5 +1,5 @@
 # This module is used for streamlit app
-from urls_and_paths.path import RAW_DATA_FILE, PREPROCESSED_DATA_FILE, DATA_AFTER_CLEANING, RAW_DATA_PROFILE
+from urls_and_paths.path import RAW_DATA_FILE, PREPROCESSED_DATA_FILE, DATA_AFTER_CLEANING, RAW_DATA_PROFILE, FEATURE_IMPORTANCE
 import pandas as pd
 import streamlit as st
 from streamlit_option_menu import option_menu
@@ -100,6 +100,11 @@ def get_data_after_cleaning():
     data_after_clean = pd.read_csv(DATA_AFTER_CLEANING)
     return data_after_clean
 
+@st.cache_data
+def get_feature_importances():
+    feature_importances = pd.read_csv(FEATURE_IMPORTANCE)
+    return feature_importances
+
 
 
 
@@ -113,6 +118,8 @@ raw_data_profile = get_raw_data_profiling()
 app_logs = get_logs()
 
 data_cleaned = get_data_after_cleaning()
+
+feature_impotances = get_feature_importances()
 
 # Hide hamburger menu 
 hide_menu_style = """
@@ -253,7 +260,11 @@ elif selected == "Dataset Used":
                       title=f"Median Price of Laptops vs {feature}", labels={"x":f"{feature}", "y":"Median Price"})
         plot.update_xaxes(type='category')
         st.plotly_chart(plot)
-
+    
+    st.subheader("Feature importance")
+    plot = px.bar(data_frame=feature_impotances, x='feature', y='importance', width=1200, height=600, 
+                  title="Feature vs Feature Importance")
+    st.plotly_chart(plot)
    
 
 

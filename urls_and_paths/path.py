@@ -53,4 +53,7 @@ RECOMMENDATION_LOGS = "./logs/recommendation_log.txt"
 # Recommendation system 
 RECOMMENDER = "./models/recommender.pkl"
 
+# Feature importance
+FEATURE_IMPORTANCE = "./models/feature_importance.csv"
+
 

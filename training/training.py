@@ -1,4 +1,4 @@
-from urls_and_paths.path import PREPROCESSED_DATA_FILE, BEST_MODEL, TRAIN_LOGS
+from urls_and_paths.path import PREPROCESSED_DATA_FILE, BEST_MODEL, TRAIN_LOGS, FEATURE_IMPORTANCE
 import pandas as pd
 from logs.logger import App_Logger
 from .model_linear import LinearReg
@@ -6,6 +6,7 @@ from .decision_tree import Decision
 from .random_forest import RandomForest
 from .boosting import Boosting
 import pickle
+from sklearn.inspection import permutation_importance
 
 class TrainBestModel:
     """
@@ -42,3 +43,24 @@ class TrainBestModel:
             App_Logger().log(module='training', msg_type='success', message=f"Training: Best Model: {best_model}")
             App_Logger().log(module='training', msg_type='success', message=f"Training: Best Model test score: {best_test_score}")
             App_Logger().log(module='training', msg_type='success', message=f"Training: Best Model saved: {BEST_MODEL}")
+    
+    def calculate_feature_importances(self):
+        """
+        Calculate feature importances from best estimator using permutation importance method
+        """
+        try:
+            with open(BEST_MODEL, 'rb') as f:
+                best_estimator = pickle.load(f)
+                f.close()
+            X = self.data.drop(['price'], axis=1)
+            y = self.data['price'].values
+            y = y.reshape(-1,1)
+            result = permutation_importance(best_estimator, X, y, scoring='r2', n_repeats=100)
+
+            importance = pd.DataFrame({"feature": X.columns, 'importance' : result['importances_mean']})
+            importance.to_csv(FEATURE_IMPORTANCE, index=False)
+
+            App_Logger().log(module='training', msg_type='success', message=f"Feature Importance: calculated successfully using best model")
+        except Exception as e:
+            App_Logger().log(module='training', msg_type='error', message=f"Feature Importance cannot be calculated because of {e}")
+            

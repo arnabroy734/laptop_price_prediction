@@ -15,11 +15,13 @@ try:
     4. Build the recommendation system
     5. Train models and find best
     """
-    # scrape_data()
-    # RawDataValidation().validate()
+    scrape_data()
+    RawDataValidation().validate()
     Preprocessor().preprocess()
-    # Recommendation()
-    # TrainBestModel().find_best_model()
+    Recommendation()
+    training = TrainBestModel()
+    training.find_best_model()
+    training.calculate_feature_importances()
 
 except Exception as e:
     traceback.print_exc()
