@@ -2,6 +2,10 @@
  ## Table of contents
   - [Problem statement](#problem-statement)
   - [Approach to solve the problem](#approach-to-solve-the-problem)
+    1. [Data collection](#collecting-data)
+    2. [Data preprocessing](#cleaning,-analysing-and-preprocessing-the-data)
+    3. [Regression model](#building-and-tuning-model-to-solve-the-price-prediction-problem)
+    4. [Recommendation system](#build-a-simple-recommendation-system-to-recommend-similar-laptops)
  3. Project description and architecture</a></p>
  4. Technologies used</a></p>
  5. How to run this project</a></p>
@@ -35,7 +39,10 @@
  
  ![image](https://github.com/arnabroy734/laptop_price_prediction/assets/86049035/23df7dfb-aa81-4c25-9cff-6e7963c949c4)
 
-We used the the dataset to build a regression model to predict price using the available features. We have done hyperparameter tuning on different models and saved the model as best model which gives best performance. We used [R2 score](https://benjaminobi.medium.com/what-really-is-r2-score-in-linear-regression-20cafdf5b87c) as performance metric.
+We used the the dataset to build a regression model to predict price using the available features. We have done hyperparameter tuning on different models and saved the model as best model which gives best performance. **We used [R2 score](https://benjaminobi.medium.com/what-really-is-r2-score-in-linear-regression-20cafdf5b87c) as performance metric.**
+
+### 4. Build a simple recommendation system to recommend similar laptops
+We have built a simple recommendation system which will recommend top 5 laptops having similarity with the configuration selected by the user. It is buit on [Nearest Neighbour](https://scikit-learn.org/stable/modules/neighbors.html) using [cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity)
  
  
 
