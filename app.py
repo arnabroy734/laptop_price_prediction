@@ -202,7 +202,6 @@ if selected == "Prediction":
 
     if predict:
         # Collect the input
-        t1 = time.time()
 
         input_X = {
             "Processor_Name" : [processor_name],
@@ -218,27 +217,13 @@ if selected == "Prediction":
 
         input_X = pd.DataFrame(input_X)
 
-        # To be deleted later
-        t2 = time.time()
-        App_Logger().log(module='runtime', msg_type='success', message=f"data collection done in {t2-t1} seconds")
 
 
         # Try validating input, then prediction and recommendation
         try:
-            t1 = time.time()
             validator.validate_input(input_X)
-            t2 = time.time()
-            App_Logger().log(module='runtime', msg_type='success', message=f"validation done in {t2-t1} seconds")
-
-            t1 = time.time()
             price_predicted = predictor.predict(input_X)[0]
-            t2 = time.time()
-            App_Logger().log(module='runtime', msg_type='success', message=f"prediction done in {t2-t1} seconds")
-
-            t1 = time.time()
             recommendations = recommender.recommend(input_X)
-            t2 = time.time()
-            App_Logger().log(module='runtime', msg_type='success', message=f"recommendation done in {t2-t1} seconds")
 
             
 
@@ -270,7 +255,7 @@ elif selected == "Dataset Used":
     # st_profile_report(raw_data_profile)
     profile = open(RAW_DATA_PROFILE, 'r')
     profile = profile.read() 
-    components.html(profile)
+    components.html(profile, height=1080)
 
     st.subheader("Relationship of target variable with features")
 
