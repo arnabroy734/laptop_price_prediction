@@ -255,7 +255,8 @@ elif selected == "Dataset Used":
     # st_profile_report(raw_data_profile)
     profile = open(RAW_DATA_PROFILE, 'r')
     profile = profile.read() 
-    components.html(profile, height=1080)
+    st.markdown(profile, unsafe_allow_html=True)
+    # components.html(profile, height=1080)
 
     st.subheader("Relationship of target variable with features")
 
