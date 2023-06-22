@@ -115,7 +115,7 @@ st.set_page_config(page_title="Predict Laptop Price", page_icon=":desktop_comput
 
 # Caching data and resource
 predictor, recommender, validator = initialise_resources()
-# raw_data_profile = get_raw_data_profiling()
+raw_data_profile = get_raw_data_profiling()
 app_logs = get_logs()
 data_cleaned = get_data_after_cleaning()
 feature_impotances = get_feature_importances()
