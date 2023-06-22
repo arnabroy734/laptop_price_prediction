@@ -202,7 +202,6 @@ if selected == "Prediction":
 
     if predict:
         # Collect the input
-        print("Prediction start")
         t1 = time.time()
 
         input_X = {
@@ -229,7 +228,7 @@ if selected == "Prediction":
             recommendations = recommender.recommend(input_X)
 
             t2 = time.time()
-            print(f"Time to validate recomend and predict {t2-t1}")
+            App_Logger().log(module='runtime', msg_type='success', message=f"prediction and recommendation done in {t2-t1} seconds")
 
             st.subheader(f"Expected price for your configuration is - Rs. {int(price_predicted)}")
                 
