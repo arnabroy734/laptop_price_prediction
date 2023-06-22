@@ -8,7 +8,7 @@ from urls_and_paths.path import RAW_DATA_FILE, RAW_DATA_PROFILE
 from preprocessing.encoding import *
 from preprocessing.imputation import *
 import pickle
-import pandas_profiling
+import pandas_profiling as pp
 
 class Preprocessor:
     """
@@ -23,11 +23,12 @@ class Preprocessor:
     def __init__(self):
         try:
             self.data = pd.read_csv(RAW_DATA_FILE, encoding='unicode_escape')
-            profile = self.data.profile_report()
+            profile = pp.ProfileReport(self.data)
+            profile.to_file(RAW_DATA_PROFILE)
             
-            with open(RAW_DATA_PROFILE, 'wb') as f:
-                pickle.dump(profile, f)
-                f.close()
+            # with open(RAW_DATA_PROFILE, 'wb') as f:
+            #     pickle.dump(profile, f)
+            #     f.close()
 
             App_Logger().log(module='preprocessing', msg_type='success', message="raw data read successfully and Preprocessor object initialised")
         except:

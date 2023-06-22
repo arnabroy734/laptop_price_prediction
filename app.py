@@ -15,6 +15,7 @@ import streamlit_pandas as sp
 from streamlit_pandas_profiling import st_profile_report
 import pandas_profiling
 import plotly.express as px
+import streamlit.components.v1 as components
 
 
 @st.cache_data
@@ -111,15 +112,20 @@ def get_feature_importances():
     
 st.set_page_config(page_title="Predict Laptop Price", page_icon=":desktop_computer:", layout="wide")
 
+# Caching data and resource
 predictor, recommender, validator = initialise_resources()
-
-raw_data_profile = get_raw_data_profiling()
-
+# raw_data_profile = get_raw_data_profiling()
 app_logs = get_logs()
-
 data_cleaned = get_data_after_cleaning()
-
 feature_impotances = get_feature_importances()
+
+processor_names = get_processor_names()
+min_clock, max_clock = get_clock_speed_range()
+ssd_capacities = get_ssd_capacities()
+ram_sizes = get_ram_sizes()
+gpu_sizes = get_gpu_sizes()
+screen_sizes = get_screen_size_range()
+
 
 # Hide hamburger menu 
 hide_menu_style = """
@@ -151,21 +157,21 @@ if selected == "Prediction":
     col1, col2 = st.columns(2)
     with col1:
         # Processor Name Input
-        processor_name = st.selectbox("Processor Name", options=get_processor_names())
+        processor_name = st.selectbox("Processor Name", options=processor_names)
 
         # Clock speed input
         min, max = get_clock_speed_range()
-        clock_speed = st.number_input(f"Maximum CPU Clock speed (range is {min} GHz to {max} GHz)",min_value=min, max_value=max, value=min)
+        clock_speed = st.number_input(f"Maximum CPU Clock speed (range is {min} GHz to {max} GHz)",min_value=min_clock, max_value=max_clock, value=min_clock)
 
         # SSD input
         ssd = st.selectbox("SSD", options=["Yes", "No"])
         if ssd == "Yes":
-            ssd_capacity = st.selectbox("SSD Capacity", options=get_ssd_capacities())
+            ssd_capacity = st.selectbox("SSD Capacity", options=ssd_capacities)
         else:
             ssd_capacity = st.selectbox("SSD Capacity", options=['NO_SSD'], disabled=True)
             
         # RAM
-        ram = st.selectbox("RAM", options=get_ram_sizes())
+        ram = st.selectbox("RAM", options=ram_sizes)
 
 
     with col2:
@@ -175,13 +181,13 @@ if selected == "Prediction":
         if graphic_card == "INTEGRATED":
             graphic_memory = st.selectbox("GPU Memeory", options=['0 GB'], disabled=True)
         else:
-            graphic_memory = st.selectbox("GPU Memeory", options=get_gpu_sizes(), disabled=False)
+            graphic_memory = st.selectbox("GPU Memeory", options=gpu_sizes, disabled=False)
 
         touchscreen = st.selectbox("Touchscreen", options=['Yes', 'No'])
 
         # min, max = get_screen_size_range()
         # screensize = st.number_input(f"Screensize in cm (range is {int(min)} cm to {int(max)} cm)", min_value=min, max_value=max)
-        screensize = st.selectbox(f"Screensize in cm ", options=get_screen_size_range())
+        screensize = st.selectbox(f"Screensize in cm ", options=screen_sizes)
         resolution = st.selectbox("Screen Resolution", options=['1920 x 1080', '1366 x 768', '2560 x 1600', '2160 x 1440',
                                                                     '2880 x 1800', '1920 x 1200', '3840 x 2160', '3024 x 1964',
                                                                     '3456 x 2234', '2560 x 1664', '2560 x 1440', '3200 x 2000',
@@ -243,7 +249,10 @@ if selected == "Prediction":
 
 elif selected == "Dataset Used":
     # Show Raw Data Profiling
-    st_profile_report(raw_data_profile)
+    # st_profile_report(raw_data_profile)
+    profile = open(RAW_DATA_PROFILE, 'r', encoding='utf-8')
+    profile = profile.read() 
+    components.html(profile)
 
     st.subheader("Relationship of target variable with features")
 

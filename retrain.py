@@ -6,6 +6,11 @@ from validation.validation_raw_data import RawDataValidation
 from logs.logger import App_Logger
 import traceback
 
+import time 
+from validation.validation_prediction import PredictionValidation
+from prediction.prediction import PredictionPipeline, RecommendationPipeline
+import pandas as pd
+
 try:
     """
     Steps to retrain:
@@ -24,6 +29,4 @@ try:
     training.calculate_feature_importances()
 
 except Exception as e:
-    traceback.print_exc()
-
-
+    print(e)
