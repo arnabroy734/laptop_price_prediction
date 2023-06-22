@@ -16,6 +16,7 @@ from streamlit_pandas_profiling import st_profile_report
 import pandas_profiling
 import plotly.express as px
 import streamlit.components.v1 as components
+import time
 
 
 @st.cache_data
@@ -201,6 +202,9 @@ if selected == "Prediction":
 
     if predict:
         # Collect the input
+        print("Prediction start")
+        t1 = time.time()
+
         input_X = {
             "Processor_Name" : [processor_name],
             "Clock_Speed" : [clock_speed],
@@ -223,6 +227,9 @@ if selected == "Prediction":
             validator.validate_input(input_X)
             price_predicted = predictor.predict(input_X)[0]
             recommendations = recommender.recommend(input_X)
+
+            t2 = time.time()
+            print(f"Time to validate recomend and predict {t2-t1}")
 
             st.subheader(f"Expected price for your configuration is - Rs. {int(price_predicted)}")
                 
@@ -250,7 +257,7 @@ if selected == "Prediction":
 elif selected == "Dataset Used":
     # Show Raw Data Profiling
     # st_profile_report(raw_data_profile)
-    profile = open(RAW_DATA_PROFILE, 'r', encoding='utf-8')
+    profile = open(RAW_DATA_PROFILE, 'r')
     profile = profile.read() 
     components.html(profile)
 
