@@ -252,12 +252,8 @@ if selected == "Prediction":
 
 elif selected == "Dataset Used":
     # Show Raw Data Profiling
-    # st_profile_report(raw_data_profile)
-    profile = open(RAW_DATA_PROFILE, 'r')
-    profile = profile.read() 
-    st.markdown(profile, unsafe_allow_html=True)
-    # components.html(profile, height=1080)
-
+    st_profile_report(raw_data_profile)
+    
     st.subheader("Relationship of target variable with features")
 
     feature = st.selectbox("Choose a feature to see relationship with Price columns", options=[col for col in data_cleaned.columns if col!='price'])
