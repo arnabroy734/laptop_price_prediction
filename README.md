@@ -18,7 +18,8 @@
   - [How to run this project](#how-to-run-this-project)
  - [Technologies used](#technologies-used)
  - [Sample test results](#sample-test-result)
- - [Deployed version of this repo](https://laptop-price-prediction.streamlit.app/)
+ - [Deployed version of this repo](https://laptop-price-prediction-wd3g.onrender.com/)
+ - [Docker Image](https://hub.docker.com/layers/arnab734/laptop-price/latest/images/sha256:68a1497510af2b2fce1cfc88af97c8a1d8ddba2c8873468716b7c90217633913)
  
 &nbsp;
 
