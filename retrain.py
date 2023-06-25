@@ -10,6 +10,11 @@ from prediction.prediction import PredictionPipeline, RecommendationPipeline
 import pandas as pd
 import time
 
+import time 
+from validation.validation_prediction import PredictionValidation
+from prediction.prediction import PredictionPipeline, RecommendationPipeline
+import pandas as pd
+
 try:
     """
     Steps to retrain:
@@ -62,6 +67,4 @@ try:
     print(recommendations)
 
 except Exception as e:
-    traceback.print_exc()
-
-
+    print(e)

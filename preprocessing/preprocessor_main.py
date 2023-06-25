@@ -8,7 +8,7 @@ from urls_and_paths.path import RAW_DATA_FILE, RAW_DATA_PROFILE
 from preprocessing.encoding import *
 from preprocessing.imputation import *
 import pickle
-import pandas_profiling
+import pandas_profiling as pp
 
 class Preprocessor:
     """

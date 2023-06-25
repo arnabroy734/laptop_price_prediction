@@ -64,10 +64,10 @@ class PredictionValidation:
         """
         for idx, input_column in enumerate(list(data.columns)):
             if self.columns[idx] != input_column:
-                App_Logger().log(module='validation', msg_type='error', message=f"prediction validation: column name {input_column} not accepted")
+                # App_Logger().log(module='validation', msg_type='error', message=f"prediction validation: column name {input_column} not accepted")
                 raise Exception(f'Column validation failed for {input_column}')
             
-        App_Logger().log(module='validation', msg_type='success', message=f"prediction validation: column validation successful")
+        # App_Logger().log(module='validation', msg_type='success', message=f"prediction validation: column validation successful")
 
     
 
@@ -77,10 +77,10 @@ class PredictionValidation:
         """
         for input_column in list(data.columns):
             if self.data_type[input_column] != data[input_column].dtype:
-                App_Logger().log(module='validation', msg_type='error', message=f"prediction validation: data type is wrong in {input_column}")
+                # App_Logger().log(module='validation', msg_type='error', message=f"prediction validation: data type is wrong in {input_column}")
                 raise Exception(f'Data type validation failed for column {input_column}. Expected type is {self.data_type[input_column]}')
             
-        App_Logger().log(module='validation', msg_type='success', message=f"prediction validation: data type validation successful")
+        # App_Logger().log(module='validation', msg_type='success', message=f"prediction validation: data type validation successful")
         
 
 
@@ -94,18 +94,18 @@ class PredictionValidation:
                 difference = input_categories.difference(self.categories[column])
                 
                 if (len(difference) != 0): # additional category found in input
-                    App_Logger().log(module='validation', msg_type='error', message=f"prediction validation: New category is found in {column}")
+                    # App_Logger().log(module='validation', msg_type='error', message=f"prediction validation: New category is found in {column}")
                     raise Exception (f'New category found in column {column}')
             
             else: # Check numerical data
                 min, max = self.value_range[column][0], self.value_range[column][1]
                 count_beyond_range = data[column][(data[column] < min) | (data[column] > max)].count()
                 if count_beyond_range != 0: # some values are beyond range
-                    App_Logger().log(module='validation', msg_type='error', message=f"prediction validation: Value in column {column} is beyond range")
+                    # App_Logger().log(module='validation', msg_type='error', message=f"prediction validation: Value in column {column} is beyond range")
                     raise Exception(f"Value of {column} should be in between {min} and {max}")
                 
         
-        App_Logger().log(module='validation', msg_type='success', message=f"prediction validation: category and range validation successful")
+        # App_Logger().log(module='validation', msg_type='success', message=f"prediction validation: category and range validation successful")
         
                 
         

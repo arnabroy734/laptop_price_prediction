@@ -79,7 +79,7 @@ class Recommendation:
 
         # Transform the X using existing encoder
         X = self.encoder.transform(X)
-        rec_indices = self.cosine.kneighbors(X, n_neighbors=10, return_distance=False)
+        rec_indices = self.cosine.kneighbors(X, n_neighbors=5, return_distance=False)
 
         # Loading the product ids and links
         prod_ids = pd.read_csv(PROD_ID_AND_LINK)
