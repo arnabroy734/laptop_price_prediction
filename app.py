@@ -5,16 +5,14 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 import pickle
 import numpy as np
-from PIL import Image
 import textwrap
 from validation.validation_prediction import PredictionValidation
 from prediction.prediction import PredictionPipeline, RecommendationPipeline
-import pprint
 from logs.logger import App_Logger
 import streamlit_pandas as sp
 from streamlit_pandas_profiling import st_profile_report
-import pandas_profiling
 import plotly.express as px
+import streamlit.components.v1 as components
 
 
 @st.cache_data
@@ -242,8 +240,7 @@ if selected == "Prediction":
 
 
 elif selected == "Dataset Used":
-    # Show Raw Data Profiling
-    st_profile_report(raw_data_profile)
+    
 
     st.subheader("Relationship of target variable with features")
 
@@ -265,7 +262,10 @@ elif selected == "Dataset Used":
     plot = px.bar(data_frame=feature_impotances, x='feature', y='importance', width=1200, height=600, 
                   title="Feature vs Feature Importance")
     st.plotly_chart(plot)
-   
+
+    # Show Raw Data Profiling
+    profile  = open('./data/raw_data_profile.html')
+    components.html(profile.read(), height=2000)
 
 
 
