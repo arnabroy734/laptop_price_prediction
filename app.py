@@ -81,20 +81,9 @@ def initialise_resources():
     return (predictor, recommender, validator)
 
 
-# @st.cache_resource(ttl=100)
-# def get_logs(module=None, msg_type=None):
-#     app_logs = App_Logger().get_logs(module, msg_type)
-#     app_logs = pd.DataFrame(app_logs[::-1])
-#     app_logs.drop(['_id'], axis=1, inplace=True)
-#     return app_logs
-
 
 @st.cache_resource(ttl=100)
 def get_raw_data_profiling():
-    # with open(RAW_DATA_PROFILE, 'rb') as f:
-    #     profile = pickle.load(f)
-    #     f.close()
-    # return profile
     profile  = open('./data/raw_data_profile.html')
     return profile.read()
 
@@ -142,10 +131,10 @@ def main():
     with st.sidebar:
         selected = option_menu(
             menu_title="Laptop Price Predictor",
-            options=["Prediction", "Dataset Used", "Application Logs"],
+            options=["Prediction", "Dataset Used"],
             default_index=0,
             menu_icon=["laptop"],
-            icons=["boxes", "database", "bookmark"]
+            icons=["boxes", "database"]
             # orientation='horizontal'
         )
 
@@ -277,39 +266,10 @@ def main():
         st.plotly_chart(plot)
 
         # Show Raw Data Profiling
-        # profile  = open('./data/raw_data_profile.html')
         components.html(raw_data_profile, height=2000)
 
 
 
-
-
-
-
-    # CODE FOR SHOWING APPLICATION LOGS
-    # else:
-    #     st.subheader("Check application logs")
-
-    #     def color_success_failure(val):
-    #         if val == 'success':
-    #             return 'color : green'
-    #         elif val == 'error':
-    #             return 'color : red' 
-                
-            
-    #     # app_logs = app_logs.applymap(color_success_failure )
-        
-    #     # st.dataframe(app_logs,  width=1080, height=500)
-
-            
-
-    #     all_widgets = sp.create_widgets(app_logs, create_data={
-    #         'module' : 'multiselect',
-    #         'type' : 'multiselect',
-    #         'message' : 'none'
-    #     })
-    #     res = sp.filter_df(app_logs, all_widgets)
-    #     st.dataframe(res.style.applymap(color_success_failure), width=1080, height=500)
 
 
 
