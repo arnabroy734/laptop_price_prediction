@@ -13,7 +13,6 @@ import streamlit_pandas as sp
 from streamlit_pandas_profiling import st_profile_report
 import plotly.express as px
 import streamlit.components.v1 as components
-from memory_profiler import profile
 
 
 @st.cache_data(ttl=100)
@@ -110,7 +109,7 @@ def get_feature_importances():
     feature_importances = pd.read_csv(FEATURE_IMPORTANCE)
     return feature_importances
 
-@profile
+
 def main():
 
     
