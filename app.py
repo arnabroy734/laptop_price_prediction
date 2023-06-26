@@ -81,12 +81,12 @@ def initialise_resources():
     return (predictor, recommender, validator)
 
 
-@st.cache_resource(ttl=100)
-def get_logs(module=None, msg_type=None):
-    app_logs = App_Logger().get_logs(module, msg_type)
-    app_logs = pd.DataFrame(app_logs[::-1])
-    app_logs.drop(['_id'], axis=1, inplace=True)
-    return app_logs
+# @st.cache_resource(ttl=100)
+# def get_logs(module=None, msg_type=None):
+#     app_logs = App_Logger().get_logs(module, msg_type)
+#     app_logs = pd.DataFrame(app_logs[::-1])
+#     app_logs.drop(['_id'], axis=1, inplace=True)
+#     return app_logs
 
 
 @st.cache_resource(ttl=100)
@@ -117,7 +117,7 @@ def main():
 
     # Caching data and resource
     predictor, recommender, validator = initialise_resources()
-    app_logs = get_logs()
+    # app_logs = get_logs()
     raw_data_profile = get_raw_data_profiling()
     data_cleaned = get_data_after_cleaning()
     feature_impotances = get_feature_importances()
@@ -287,29 +287,29 @@ def main():
 
 
     # CODE FOR SHOWING APPLICATION LOGS
-    else:
-        st.subheader("Check application logs")
+    # else:
+    #     st.subheader("Check application logs")
 
-        def color_success_failure(val):
-            if val == 'success':
-                return 'color : green'
-            elif val == 'error':
-                return 'color : red' 
+    #     def color_success_failure(val):
+    #         if val == 'success':
+    #             return 'color : green'
+    #         elif val == 'error':
+    #             return 'color : red' 
                 
             
-        # app_logs = app_logs.applymap(color_success_failure )
+    #     # app_logs = app_logs.applymap(color_success_failure )
         
-        # st.dataframe(app_logs,  width=1080, height=500)
+    #     # st.dataframe(app_logs,  width=1080, height=500)
 
             
 
-        all_widgets = sp.create_widgets(app_logs, create_data={
-            'module' : 'multiselect',
-            'type' : 'multiselect',
-            'message' : 'none'
-        })
-        res = sp.filter_df(app_logs, all_widgets)
-        st.dataframe(res.style.applymap(color_success_failure), width=1080, height=500)
+    #     all_widgets = sp.create_widgets(app_logs, create_data={
+    #         'module' : 'multiselect',
+    #         'type' : 'multiselect',
+    #         'message' : 'none'
+    #     })
+    #     res = sp.filter_df(app_logs, all_widgets)
+    #     st.dataframe(res.style.applymap(color_success_failure), width=1080, height=500)
 
 
 
