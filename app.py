@@ -15,7 +15,7 @@ import plotly.express as px
 import streamlit.components.v1 as components
 
 
-@st.cache_data
+@st.cache_data(ttl=1800)
 def get_processor_names():
     try:
         data = pd.read_csv(RAW_DATA_FILE, encoding='unicode_escape')
@@ -24,7 +24,7 @@ def get_processor_names():
     except:
         return []
 
-@st.cache_data
+@st.cache_data(ttl=1800)
 def get_clock_speed_range():
     try:
         data = pd.read_csv(PREPROCESSED_DATA_FILE)
@@ -33,7 +33,7 @@ def get_clock_speed_range():
     except:
         return (1, 10)
 
-@st.cache_data
+@st.cache_data(ttl=1800)
 def get_ssd_capacities():
     try:
         data = pd.read_csv(RAW_DATA_FILE, encoding='unicode_escape')
@@ -43,7 +43,7 @@ def get_ssd_capacities():
     except:
         return []
 
-@st.cache_data
+@st.cache_data(ttl=1800)
 def get_ram_sizes():
     try:
         data =  pd.read_csv(PREPROCESSED_DATA_FILE)
@@ -52,7 +52,7 @@ def get_ram_sizes():
     except:
         return []
     
-@st.cache_data
+@st.cache_data(ttl=1800)
 def get_gpu_sizes():
     try:
         data =  pd.read_csv(PREPROCESSED_DATA_FILE)
@@ -62,7 +62,7 @@ def get_gpu_sizes():
     except:
         return []
 
-@st.cache_data
+@st.cache_data(ttl=1800)
 def get_screen_size_range():
     try:
         data = pd.read_csv(PREPROCESSED_DATA_FILE)
@@ -72,33 +72,35 @@ def get_screen_size_range():
     except:
         return []
 
-@st.cache_resource
+@st.cache_resource(ttl=1800)
 def initialise_resources():
     predictor = PredictionPipeline()
     recommender = RecommendationPipeline()
     validator = PredictionValidation()
     return (predictor, recommender, validator)
 
-@st.cache_resource
+@st.cache_resource(ttl=1800)
 def get_logs(module=None, msg_type=None):
     app_logs = App_Logger().get_logs(module, msg_type)
     app_logs = pd.DataFrame(app_logs[::-1])
     app_logs.drop(['_id'], axis=1, inplace=True)
     return app_logs
 
-@st.cache_resource
+@st.cache_resource(ttl=1800)
 def get_raw_data_profiling():
-    with open(RAW_DATA_PROFILE, 'rb') as f:
-        profile = pickle.load(f)
-        f.close()
-    return profile
+    # with open(RAW_DATA_PROFILE, 'rb') as f:
+    #     profile = pickle.load(f)
+    #     f.close()
+    # return profile
+    profile  = open('./data/raw_data_profile.html')
+    return profile.read()
 
-@st.cache_resource
+@st.cache_resource(ttl=1800)
 def get_data_after_cleaning():
     data_after_clean = pd.read_csv(DATA_AFTER_CLEANING)
     return data_after_clean
 
-@st.cache_data
+@st.cache_data(ttl=1800)
 def get_feature_importances():
     feature_importances = pd.read_csv(FEATURE_IMPORTANCE)
     return feature_importances
@@ -271,8 +273,8 @@ elif selected == "Dataset Used":
     st.plotly_chart(plot)
 
     # Show Raw Data Profiling
-    profile  = open('./data/raw_data_profile.html')
-    components.html(profile.read(), height=2000)
+    # profile  = open('./data/raw_data_profile.html')
+    components.html(raw_data_profile, height=2000)
 
 
 
